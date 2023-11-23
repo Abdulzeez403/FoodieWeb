@@ -1,0 +1,83 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,500;1,600;1,700;1,800;1,900&family=Poppins:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+/* @import "slick-carousel/slick/slick.css";
+@import "slick-carousel/slick/slick-theme.css"; */
+
+body {
+  font-family: "Montserrat", sans-serif;
+  /* font-family: "Poppins", sans-serif; */
+}
+
+/* h1 {
+  font-size: "28px";
+} */
+h2 {
+  font-size: "16px";
+}
+h3 {
+  font-size: " 14px";
+}
+
+@layer components {
+  .link-style {
+    @apply font-bold text-secondaryTextColor hover:border-b-red-200 hover:border-b-4;
+  }
+  .flex-content {
+    @apply flex gap-4 items-center;
+  }
+  .flex-justify {
+    @apply flex justify-between m-0 items-center;
+  }
+  .shadow-style {
+    @apply shadow-lg shadow-slate-200 rounded-md hover:bg-slate-200 hover:shadow-white 
+        transition duration-500 ease-in-out transform hover:-translate-y-1 cursor-pointer;
+  }
+}
+
+@keyframes lift {
+  from {
+    transform: translateY(0);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+
+  to {
+    transform: translateY(-5px);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  }
+}
+
+.card {
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.card:hover {
+  animation: lift 0.3s ease-in-out;
+  transform: translateY(-5px);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: none;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgb(100, 228, 106);
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  border: 2px solid rgb(100, 228, 106);
+  background-color: white;
+}
