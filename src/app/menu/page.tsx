@@ -1,9 +1,7 @@
+import MenusList from '@/app/_modules/menus/detail'
 import React from 'react'
 
 const MenuPage = () => {
-    return (
-        <div>MenuPage</div>
-    )
+    return <MenusList />
 }
-
 export default MenuPage

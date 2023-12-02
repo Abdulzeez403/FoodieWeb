@@ -59,7 +59,7 @@ interface IProps {
 
 }
 
-const Restaurant = ({ img, title, foods, rating, km }: IProps) => {
+export const Restaurant = ({ img, title, foods, rating, km }: IProps) => {
     return (
         <div className=' card w-[20rem] shadow-lg rounded-md border-2 pb-5 p-3'>
             <div className='relative'>
