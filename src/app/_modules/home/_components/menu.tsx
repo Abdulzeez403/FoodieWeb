@@ -2,13 +2,19 @@ import ImageComponent from '@/app/_components/images'
 import StarIcon from '@/app/_components/svg/svg/star'
 import React from 'react'
 import HeaderComponents from '@/app/_components/header'
-import bakery from "../../../../../public/food1.png"
 import ButtonComponent from '@/app/_components/button'
+import { useDispatch } from 'react-redux'
+import { addToCart } from '@/lib/features/menu/cartSlice'
 
 
 
 
 const MenusSection = () => {
+    const dispatch = useDispatch()
+
+    const handleAddToCart = (payload: any) => {
+        dispatch(addToCart(payload) as any)
+    }
     const data = [
         {
             id: 1,
@@ -52,7 +58,8 @@ const MenusSection = () => {
                 {
                     data.map((item) => (
                         <div key={item.id}>
-                            <MenuComponent img={item.image} title='Chicken' description={item.description} price={item.price} />
+                            <MenuComponent img={item.image} title='Chicken' description={item.description} price={item.price}
+                                handleAddToCart={() => { handleAddToCart(item) }} />
                         </div>
 
                     ))
@@ -65,14 +72,15 @@ const MenusSection = () => {
 
 export default MenusSection
 
-interface IProps {
+interface IMenuProps {
     img: any
     title: string,
     description: string,
-    price: string
+    price: string,
+    handleAddToCart?: () => void;
 }
 
-export const MenuComponent = ({ img, title, description, price }: IProps) => {
+export const MenuComponent = ({ img, title, description, price, handleAddToCart }: IMenuProps) => {
     return (
 
         <div className=' card  w-[20rem]  shadow-lg rounded-md border-2 pb-5  '>
@@ -98,7 +106,7 @@ export const MenuComponent = ({ img, title, description, price }: IProps) => {
                 <div>{description}</div>
                 <div className='flex justify-between items-center py-2'>
                     <p className='font-semibold text-[1.5rem]'>$ {price}</p>
-                    <ButtonComponent type="link" className='' icon="+" size="large">
+                    <ButtonComponent type="link" className='' icon="+" size="large" onClick={handleAddToCart} >
                         Add
                     </ButtonComponent>
                 </div>

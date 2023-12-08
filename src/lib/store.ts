@@ -1,20 +1,24 @@
-import { configureStore } from "@reduxjs/toolkit";
+// store.ts
+import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { authApi } from "./features/auth/authApi";
 import { AuthSlice } from "./features/auth/authSlice";
+import cartReducer from "./features/menu/cartSlice";
+import { menuApi } from "./features/menu/cartApi";
 
-export const makeStore = () => {
-  return configureStore({
-    reducer: {
-      user: AuthSlice.reducer,
-      [authApi.reducerPath]: authApi.reducer,
-    },
-    middleware: (getDefaultMiddleware) =>
-      getDefaultMiddleware({}).concat([authApi.middleware]),
-  });
-};
+const rootReducer = combineReducers({
+  user: AuthSlice.reducer,
+  cart: cartReducer,
+  [authApi.reducerPath]: authApi.reducer,
+  [menuApi.reducerPath]: menuApi.reducer,
+});
 
-// Infer the type of makeStore
-export type AppStore = ReturnType<typeof makeStore>;
-// Infer the `RootState` and `AppDispatch` types from the store itself
-export type RootState = ReturnType<AppStore["getState"]>;
-export type AppDispatch = AppStore["dispatch"];
+const store = configureStore({
+  reducer: rootReducer,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({}).concat([authApi.middleware, menuApi.middleware]),
+});
+
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;
+
+export default store;

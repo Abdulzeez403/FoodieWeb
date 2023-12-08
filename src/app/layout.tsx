@@ -13,10 +13,12 @@ import { useState } from 'react'
 import ModalComponent2 from './_components/modals/sideModal'
 import SignInComponents from './_modules/auth/signIn'
 import SignUpComponent from "./_modules/auth/signUp"
-import StoreProvider from './StoreProvider'
 import Notification from "./_components/notifications/notify"
 import { UseGetCookie } from './_components/hooks/cookie'
 import Cookies from 'universal-cookie'
+import store, { RootState } from '@/lib/store'
+import { Provider, useSelector } from 'react-redux'
+import Checkoutdetail from './_modules/checkout/detail'
 // import { inter, roboto } from './font'
 
 
@@ -27,23 +29,21 @@ import Cookies from 'universal-cookie'
 
 export default function RootLayout({ children, }: { children: React.ReactNode }) {
 
-
   return (
     <html lang="en">
-      <StoreProvider>
+      <Provider store={store}>
         <body className='' >
           <Notification />
           <Header />
           {children}
         </body>
-      </StoreProvider>
+      </Provider>
     </html>
   )
 }
 
 const Header = () => {
   const user = UseGetCookie("user")
-  console.log(user)
   const [modal, setModal] = useState<{ show: boolean, data?: any, }>({
     show: false
   })
@@ -59,10 +59,8 @@ const Header = () => {
   const [logStyle, setLogStyle] = useState<{ show: boolean }>({
     show: true
   })
-
-  // const handleLoyStyle = () => {
-  //   setLogStyle({ show: true })
-  // }
+  const cartLength = useSelector((state: RootState) => state.cart.items.length)
+  const cartItems = useSelector((state: RootState) => state.cart.items);
 
   const handleModal = () => {
     setModal({ show: true })
@@ -115,7 +113,7 @@ const Header = () => {
             </div>
 
             <div onClick={() => { handleCartModal() }} >
-              <Badge count={3}>
+              <Badge count={cartLength}>
                 <CartIcon color="green" />
               </Badge>
             </div>
@@ -144,16 +142,18 @@ const Header = () => {
             handleLoyStyle={() => setLogStyle({ show: true })} />
         </div>
 
-
-
       </ModalComponent1>
-
       <ModalComponent2
         title="Cart"
         show={cartModal.show}
         width={500}
         onDismiss={() => setcartModal({ show: false })}>
 
+        {cartItems.map((item: any, index: number) => (
+          <Checkoutdetail cart={item} key={index} />
+
+        ))
+        }
       </ModalComponent2>
 
       <ModalComponent2

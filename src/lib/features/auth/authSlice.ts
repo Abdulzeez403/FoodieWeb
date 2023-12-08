@@ -28,15 +28,4 @@ export const AuthSlice = createSlice({
 
 // Action creators are generated for each case reducer function
 export const { changeCurrIndex } = AuthSlice.actions;
-
 export default AuthSlice.reducer;
-
-// export const signupUser = createAsyncThunk(
-//   "auth/signup",
-//   async (userData: any) => {
-//     const response = await axios.post(
-//       `${process.env.NEXT_BACKEND_URL}/api/user`
-//     );
-//     return response.data;
-//   }
-// );
