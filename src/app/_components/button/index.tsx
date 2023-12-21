@@ -12,7 +12,6 @@ interface ButtonProps {
     shape?: "default" | "circle" | "round"
     ghost?: boolean
     icon?: React.ReactNode
-    href?: string
 }
 
 const ButtonComponent: React.FC<ButtonProps> = ({
@@ -24,8 +23,8 @@ const ButtonComponent: React.FC<ButtonProps> = ({
     ghost = false,
     htmlType = 'button',
     icon,
-    href,
-    children }) => {
+    children,
+}) => {
     return (
         <AntButton
             type={type}
@@ -35,7 +34,7 @@ const ButtonComponent: React.FC<ButtonProps> = ({
             shape={shape}
             ghost={ghost}
             icon={icon}
-            href={href}
+
             className={` text-green-500 bg-green-100 border-none hover:border-2 hover:border-green-300 hover:bg-white hover:text-green-500  text-[16px] font-bold ${className}`} >
             {children}
         </AntButton>

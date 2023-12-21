@@ -8,7 +8,7 @@ export const authApi = createApi({
       query: () => "/users",
     }),
 
-    getUser: builder.query<any, Object>({
+    getUser: builder.query({
       query: (userId) => `/users/${userId}`,
     }),
 

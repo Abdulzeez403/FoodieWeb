@@ -1,25 +1,13 @@
 "use client"
 
-// import type { Metadata } from 'next'
+// import { Metadata } from 'next'
 import './globals.css'
-import Link from 'next/link'
-import CartIcon from './_components/svg/svg/cart'
-import SearchIcon from './_components/svg/svg/search'
-import MenuIcon from './_components/svg/svg/menu'
-import { Badge } from 'antd'
-import ButtonComponent from './_components/button'
-import ModalComponent1 from './_components/modals/centerModal'
-import { useState } from 'react'
-import ModalComponent2 from './_components/modals/sideModal'
-import SignInComponents from './_modules/auth/signIn'
-import SignUpComponent from "./_modules/auth/signUp"
+import { Provider } from 'react-redux'
+import store from '@/lib/store'
+import HomeLayout from './homeLayout'
 import Notification from "./_components/notifications/notify"
-import { UseGetCookie } from './_components/hooks/cookie'
-import Cookies from 'universal-cookie'
-import store, { RootState } from '@/lib/store'
-import { Provider, useSelector } from 'react-redux'
-import Checkoutdetail from './_modules/checkout/detail'
-// import { inter, roboto } from './font'
+
+
 
 
 // export const metadata: Metadata = {
@@ -34,7 +22,7 @@ export default function RootLayout({ children, }: { children: React.ReactNode })
       <Provider store={store}>
         <body className='' >
           <Notification />
-          <Header />
+          <HomeLayout />
           {children}
         </body>
       </Provider>
@@ -42,133 +30,4 @@ export default function RootLayout({ children, }: { children: React.ReactNode })
   )
 }
 
-const Header = () => {
-  const user = UseGetCookie("user")
-  const [modal, setModal] = useState<{ show: boolean, data?: any, }>({
-    show: false
-  })
 
-  const [menu, setMenu] = useState<{ show: boolean, data?: any, }>({
-    show: false
-  })
-
-  const [cartModal, setcartModal] = useState<{ show: boolean, data?: any, }>({
-    show: false
-  })
-
-  const [logStyle, setLogStyle] = useState<{ show: boolean }>({
-    show: true
-  })
-  const cartLength = useSelector((state: RootState) => state.cart.items.length)
-  const cartItems = useSelector((state: RootState) => state.cart.items);
-
-  const handleModal = () => {
-    setModal({ show: true })
-  }
-
-  const handleCartModal = () => {
-    setcartModal({ show: true })
-  }
-
-  const handleMenu = () => {
-    setMenu({ show: true })
-  }
-
-
-  return (
-
-    <>
-
-      <div className=" py-2 bg-primaryBackgroundColor shadow-lg shadow-slate-100 ">
-        <div className='flex justify-between items-center w-[90%] mx-auto'>
-
-          <div className="flex gap-4 items-center ">
-            <div className='flex-content'>
-              <div className="flex sm:flex md:hidden lg:hidden xl:hidden" onClick={() => handleMenu()}>
-                <MenuIcon color="green" stroke='green'
-                />
-              </div>
-              <h1 className="font-bold text-[1.3rem]">Foodie</h1>
-
-
-            </div>
-            <nav className="hidden sm:hidden md:flex md:gap-4 lg:flex lg:gap-4">
-              <Link href="/"> <h3 className='link-style'>Home</h3></Link>
-              <Link href="/"> <h3 className='link-style'>Recommendation</h3></Link>
-            </nav>
-          </div>
-
-          <div className='flex-content'>
-
-            <div className='bg-green-100 p-2 rounded-full'>
-              <SearchIcon color="none" stroke='green' />
-
-            </div>
-
-            <div className='hidden sm:hidden md:flex lg:flex' >
-              <ButtonComponent size="large" type="default"
-                onClick={() => { handleModal() }}>
-                Login/Sign Up
-              </ButtonComponent>
-            </div>
-
-            <div onClick={() => { handleCartModal() }} >
-              <Badge count={cartLength}>
-                <CartIcon color="green" />
-              </Badge>
-            </div>
-
-          </div>
-        </div>
-
-      </div>
-
-      <ModalComponent1
-        title="SignIn"
-        open={modal?.show}
-        width={600}
-        center={false}
-        onDismiss={() => setModal({ show: false })}>
-        <div className={logStyle.show ? "  block" : "hidden"}>
-          <SignInComponents
-            handleLoyStyle={() => setLogStyle({ show: false })}
-            onDismiss={() => setModal({ show: false })} />
-        </div>
-
-        <div className={logStyle.show ? " hidden " : "block"}>
-
-          <SignUpComponent
-            onDismiss={() => setModal({ show: false })}
-            handleLoyStyle={() => setLogStyle({ show: true })} />
-        </div>
-
-      </ModalComponent1>
-      <ModalComponent2
-        title="Cart"
-        show={cartModal.show}
-        width={500}
-        onDismiss={() => setcartModal({ show: false })}>
-
-        {cartItems.map((item: any, index: number) => (
-          <Checkoutdetail cart={item} key={index} />
-
-        ))
-        }
-      </ModalComponent2>
-
-      <ModalComponent2
-        title="Menu"
-        show={menu.show}
-        width={500}
-        position="left"
-        onDismiss={() => setMenu({ show: false })}>
-        <h4>Menaing!</h4>
-      </ModalComponent2>
-    </>
-
-
-
-
-
-  )
-}

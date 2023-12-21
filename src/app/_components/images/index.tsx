@@ -22,7 +22,7 @@ const ImageComponent: React.FC<ImageComponentProps> = ({ src, alt, className, wi
             className={className}
             priority
             sizes={sizes}
-            objectFit='cover'
+        // objectFit='cover'
         />
     );
 };
