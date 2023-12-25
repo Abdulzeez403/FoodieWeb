@@ -22,6 +22,7 @@ import { useDispatch } from "react-redux"
 import Cartdetail from "./_modules/cart/detail"
 import { usePlaceOrderMutation } from "@/lib/features/order/orderApi"
 import { FaRegUser, FaAngleRight } from 'react-icons/fa'
+import { toast } from "react-toastify"
 
 
 const HomeLayout = () => {
@@ -70,26 +71,18 @@ const HomeLayout = () => {
     const handleMenu = () => {
         setMenu({ show: true })
     }
-
-    const extractCartData = (cart: any) => ({
-        menuItemId: cart.menu?._id,
-        quantity: cart.quantity,
-    });
-    const createOrderPayload = (user: any, carts: any, totalPrice: any) => {
-        if (!carts || !carts.data || carts.data.length === 0) {
-            throw new Error('No items in the cart to place an order.');
-        }
-        const userId = user?._id;
-        const cartData = carts.data.map(extractCartData);
-        return { userId, cartData, totalAmount: totalPrice, };
-    };
-
     const handlePlaceholder = async () => {
-        const payload = createOrderPayload(user, carts, totalPrice);
-        await placeOrder({
-            ...payload
-        })
-        emptyCart(user?._id)
+        try {
+            const payload = { userId: user?._id, totalAmount: totalPrice };
+            await placeOrder({
+                ...payload
+            })
+            emptyCart(user?._id)
+            toast.success("Order Placed successfuly")
+        } catch (error) {
+            toast.error("Order placed Unsuccessfull!")
+        }
+
 
     }
 

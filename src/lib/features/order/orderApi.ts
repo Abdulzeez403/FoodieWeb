@@ -7,6 +7,9 @@ export const orderApi = createApi({
     getOrder: builder.query({
       query: (userId) => `/orders/${userId}`,
     }),
+    getOrders: builder.query({
+      query: () => `/orders/`,
+    }),
 
     placeOrder: builder.mutation({
       query: (initailOrder) => ({
@@ -18,4 +21,5 @@ export const orderApi = createApi({
   }),
 });
 
-export const { useGetOrderQuery, usePlaceOrderMutation } = orderApi;
+export const { useGetOrderQuery, usePlaceOrderMutation, useGetOrdersQuery } =
+  orderApi;
