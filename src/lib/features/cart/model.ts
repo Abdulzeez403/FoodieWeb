@@ -2,7 +2,11 @@ export interface ICart {
   _id: string;
   name: string;
   price: string;
-  image: any;
+  image: IImage[];
+}
+export interface IImage {
+  uri: string;
+  type: string;
 }
 
 export interface ICart2 {

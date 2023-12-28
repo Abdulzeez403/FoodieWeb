@@ -6,6 +6,7 @@ import cartReducer from "./features/cart/cartSlice";
 import { cartApi } from "./features/cart/cartApi";
 import { menuApi } from "./features/menu/menuApi";
 import { orderApi } from "./features/order/orderApi";
+import { paymentApi } from "./features/payment/paymentApi";
 
 const rootReducer = combineReducers({
   user: AuthSlice.reducer,
@@ -14,6 +15,7 @@ const rootReducer = combineReducers({
   [menuApi.reducerPath]: menuApi.reducer,
   [cartApi.reducerPath]: cartApi.reducer,
   [orderApi.reducerPath]: orderApi.reducer,
+  [paymentApi.reducerPath]: paymentApi.reducer,
 });
 
 const store = configureStore({
@@ -24,6 +26,7 @@ const store = configureStore({
       menuApi.middleware,
       cartApi.middleware,
       orderApi.middleware,
+      paymentApi.middleware,
     ]),
 });
 

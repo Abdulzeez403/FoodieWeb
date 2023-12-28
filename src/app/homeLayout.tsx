@@ -5,7 +5,6 @@ import Link from "next/link"
 import { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
 import ButtonComponent from "./_components/button"
-import { UseGetCookie } from "./_components/hooks/cookie"
 import ModalComponent1 from "./_components/modals/centerModal"
 import ModalComponent2 from "./_components/modals/sideModal"
 import CartIcon from "./_components/svg/svg/cart"
@@ -13,23 +12,18 @@ import MenuIcon from "./_components/svg/svg/menu"
 import SearchIcon from "./_components/svg/svg/search"
 import SignInComponents from "./_modules/auth/signIn"
 import SignUpComponent from "./_modules/auth/signUp"
-import Checkoutdetail from "./_modules/cart/detail"
-import { useEmptyCartMutation, useGetCartQuery, useGetCartsQuery } from "@/lib/features/cart/cartApi"
+import { useGetCartQuery } from "@/lib/features/cart/cartApi"
 import Cookies from "universal-cookie"
 import { ICart } from "@/lib/features/cart/model"
 import { setCarLength, setTotalPrice } from "@/lib/features/cart/cartSlice"
 import { useDispatch } from "react-redux"
 import Cartdetail from "./_modules/cart/detail"
-import { usePlaceOrderMutation } from "@/lib/features/order/orderApi"
 import { FaRegUser, FaAngleRight } from 'react-icons/fa'
-import { toast } from "react-toastify"
-
+import Image from "next/image"
 
 const HomeLayout = () => {
     const cookies = new Cookies()
     const user = cookies.get("user");
-    const [placeOrder] = usePlaceOrderMutation()
-    const [emptyCart] = useEmptyCartMutation()
 
     const dispatch = useDispatch()
     const [modal, setModal] = useState<{ show: boolean, data?: any, }>({
@@ -71,22 +65,6 @@ const HomeLayout = () => {
     const handleMenu = () => {
         setMenu({ show: true })
     }
-    const handlePlaceholder = async () => {
-        try {
-            const payload = { userId: user?._id, totalAmount: totalPrice };
-            await placeOrder({
-                ...payload
-            })
-            emptyCart(user?._id)
-            toast.success("Order Placed successfuly")
-        } catch (error) {
-            toast.error("Order placed Unsuccessfull!")
-        }
-
-
-    }
-
-
 
 
 
@@ -171,19 +149,37 @@ const HomeLayout = () => {
                 onDismiss={() => setcartModal({ show: false })}>
 
                 <div>
-                    {carts?.data?.map((item: ICart) => (
-                        <Cartdetail cart={item} key={item?._id} />
+                    {
+                        carts?.data?.length === 0 ? (<div className="flex justify-center m-0">
+                            <Image src="../../public/emptyCart.svg" alt="image" width={200} height={200} />
+                        </div>) : (
+                            <div>
+                                {carts?.data?.map((item: ICart) => (
+                                    <Cartdetail cart={item} key={item?._id} />
+                                ))
+                                }
 
-                    ))
+                                <div className="flex justify-between mt-10">
+                                    {/* <div>
+                                        <h4> <span className="text-md font-medium">Total:</span>{totalPrice}</h4>
+                                    </div> */}
+                                    <ButtonComponent
+                                        onClick={() => setcartModal({ show: false })}
+                                        size="large"
+                                        type="primary"
+                                        className="w-full">
+                                        <Link href="/checkout">
+                                            Continue:({subTotal})
+                                        </Link>
+                                    </ButtonComponent>
+
+                                </div>
+                            </div>
+
+                        )
                     }
-                    <div className="flex justify-between mt-10">
-                        <div>
-                            <h4> <span className="text-md font-medium">Total</span>{totalPrice}</h4>
-                        </div>
-                        <ButtonComponent onClick={() => handlePlaceholder()}>
-                            Checkout Now
-                        </ButtonComponent>
-                    </div>
+
+
                 </div>
 
 

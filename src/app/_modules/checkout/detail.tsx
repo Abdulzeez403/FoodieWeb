@@ -1,19 +1,22 @@
+
 import React, { useEffect, useState } from 'react'
 import Images from "../../../../public/koreans.jpeg"
 import AvatarComponents from '@/app/_components/images/avatar'
 import { CiSquareMinus, CiSquarePlus } from 'react-icons/ci'
 import { useDispatch, useSelector } from 'react-redux'
 import { toast } from 'react-toastify'
-import { setCart, setTotalPrice } from '@/lib/features/cart/cartSlice'
+import { setCarLength, setCart, setTotalPrice } from '@/lib/features/cart/cartSlice'
 import { RootState } from '@/lib/store'
-import { useDeleteCartMutation, useGetCartQuery, useGetCartsQuery } from '@/lib/features/cart/cartApi'
+import { useDeleteCartMutation, useEmptyCartMutation, useGetCartQuery, useGetCartsQuery } from '@/lib/features/cart/cartApi'
 import Cookies from 'universal-cookie'
+import { usePlaceOrderMutation } from '@/lib/features/order/orderApi'
+import CartCard from '../cart/cartCard'
 
 interface IProps {
-    cart: any,
+    cart: any
 }
 
-const Cartdetail: React.FC<IProps> = ({ cart }) => {
+const CheckoutPage: React.FC<IProps> = ({ cart }) => {
     const cookies = new Cookies()
     const user = cookies.get("user");
     const carts = cart?.menu;
@@ -24,6 +27,17 @@ const Cartdetail: React.FC<IProps> = ({ cart }) => {
     const { refetch: getCart } = useGetCartQuery(user?._id);
     const cartss = useSelector((state: RootState) => state.cart.carts)
     const total = useSelector((state: RootState) => state.cart.total)
+    const subTotal = carts?.data?.map((c: any) => parseFloat(c?.menu?.price) || 0)?.reduce((a: any, b: any) => a + b, 0);
+    // const cartLengths = useSelector((state: any) => state.cart?.cartlength)
+
+    useEffect(() => {
+        dispatch(setCarLength(carts?.data?.length)) as any
+        dispatch(setTotalPrice(subTotal))
+    }, [dispatch, carts, subTotal])
+
+
+
+
 
     const handleRemoveCart = async () => {
         try {
@@ -97,32 +111,17 @@ const Cartdetail: React.FC<IProps> = ({ cart }) => {
 
     return (
         <>
-            <div className="flex justify-between items-center m-0" >
-                <div className="flex gap-5">
-                    {/* <ImageComponent src={Images} alt="image" width={50} height={50} className='rounded-full w-[50px] min-w-min' /> */}
-                    <AvatarComponents src={Images} />
-                    <div>
-                        <h4 className="font-semibold text-lg">{carts?.name} </h4>
-                        <p className="text-lg">{carts?.price * qnt} </p>
-                    </div>
-                </div>
+            <CartCard
+                carts={carts}
+                qnt={qnt}
+                handleDecrement={handleDecrement}
+                handleIncrement={handleIncrement}
+                handleRemoveCart={handleRemoveCart}
 
-                <div className='block items-center gap-3'>
-                    <CiSquarePlus size={26} onClick={handleIncrement} />
-                    <h5 className="text-lg font-semibold text-center">
-                        {qnt}
-                    </h5>
-                    <CiSquareMinus size={26} onClick={handleDecrement} />
-
-                </div>
-            </div>
-
-            <div>
-                <h4 onClick={handleRemoveCart}>X</h4>
-            </div>
+            />
 
         </>
     )
 }
 
-export default Cartdetail
+export default CheckoutPage;

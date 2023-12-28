@@ -21,33 +21,36 @@ const OrderPage = () => {
                     <div className="w-[54rem]  border-2 rounded-md">
                         {
                             orders?.map((order: any) => (
-                                <Link href={`/user/order/${order?._id}`} key={order?._id} className=' mb-2 p-3 border-b-2'>
-                                    <div className='flex justify-between mb-3'>
-                                        <div>
-                                            <h4 className='text-md'>{order?._id}</h4>
-                                            <Moment>{order?.created || "N/L"}</Moment>
-                                        </div>
+                                <div className=' mb-2 p-3 border-b-2' key={order?._id}>
 
-                                        <h4 className='font-semibold text-yellow-300 text-md'>{order?.status}</h4>
-                                    </div>
-                                    <div className='flex justify-between'>
-                                        <div className='bg-red-300'>
-                                            <Image src={order?.cart?.menu?.images?.uri} width={70} height={70} alt="image" />
-                                        </div>
-                                        <div className="flex gap-x-5">
+                                    <Link href={`/user/order/${order?._id}`}  >
+                                        <div className='flex justify-between mb-3'>
                                             <div>
-                                                <h4 className="textStyle">Order Price:</h4>
-                                                <h4 className="textStyle">Quantity:</h4>
-                                            </div>
-                                            <div>
-                                                <h4 className="textStyle">{order?.totalAmount}</h4>
-                                                <h4 className="textStyle">{order?.cart?.length}</h4>
+                                                <h4 className='text-md'>{order?._id}</h4>
+                                                <Moment>{order?.created || "N/L"}</Moment>
                                             </div>
 
+                                            <h4 className='font-semibold text-yellow-300 text-md'>{order?.status}</h4>
                                         </div>
-                                    </div>
+                                        <div className='flex justify-between'>
+                                            <div className='bg-red-300'>
+                                                <Image src={order?.cart?.menu?.images?.uri} width={70} height={70} alt="image" />
+                                            </div>
+                                            <div className="flex gap-x-5">
+                                                <div>
+                                                    <h4 className="textStyle">Order Price:</h4>
+                                                    <h4 className="textStyle">Quantity:</h4>
+                                                </div>
+                                                <div>
+                                                    <h4 className="textStyle">{order?.totalAmount}</h4>
+                                                    <h4 className="textStyle">{order?.cart?.length}</h4>
+                                                </div>
 
-                                </Link>
+                                            </div>
+                                        </div>
+
+                                    </Link>
+                                </div>
 
                             ))
                         }
