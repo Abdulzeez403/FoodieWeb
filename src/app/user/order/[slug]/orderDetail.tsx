@@ -3,15 +3,17 @@ import { ISingelOrder } from '../model'
 import { Tabs } from 'antd';
 import type { TabsProps } from 'antd';
 import Moment from 'react-moment';
+import { LoadingComponent } from '@/app/_components/loading';
 
 
 interface IProps {
-  orderId: any
+  orderId: any,
+  isLoading: boolean
 }
 
 
 
-const OrderDetail = ({ orderId }: IProps) => {
+const OrderDetail = ({ orderId, isLoading }: IProps) => {
   const items: TabsProps['items'] = [
     {
       key: '1',
@@ -56,13 +58,21 @@ const OrderDetail = ({ orderId }: IProps) => {
 
   return (
     <div className="w-[54rem]">
-      <Tabs defaultActiveKey="1"
-        items={items}
-        onChange={onChange}
-        size="large"
-        style={{ marginBottom: 32 }}
-        indicatorSize={100} />
+      {isLoading ?
+        (<div className='text-center justify-center items-center'>
+          <LoadingComponent />
+        </div>) :
+        (
+
+          <Tabs defaultActiveKey="1"
+            items={items}
+            onChange={onChange}
+            size="large"
+            style={{ marginBottom: 32 }}
+            indicatorSize={100} />
+        )}
     </div>
+
   )
 }
 

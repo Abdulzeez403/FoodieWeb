@@ -9,12 +9,20 @@ interface pageParam {
 
 const Page = ({ params, searchParams }: { params: pageParam, searchParams: any }) => {
 
+
+    const [isLoading, setLoading]=useState<boolean>(false)
     const [result, setResult] = useState<ISingelOrder>()
     const FetchOrder = async()=>{
-    const res = await axios.get(`http://localhost:5000/api/order/${params?.slug}`);
-        const data = res.data;
-        setResult(data)
-        console.log(data)
+     setLoading(true)
+        try{
+            const res = await axios.get(`http://localhost:5000/api/order/${params?.slug}`);
+            const data = res.data;
+            setResult(data)
+            setLoading(false)
+        }catch(error){ 
+     console.log(error)
+        }
+   
     }
 
     useEffect(()=>{
@@ -22,7 +30,7 @@ const Page = ({ params, searchParams }: { params: pageParam, searchParams: any }
     },[])
     return (
         <div>
-            <OrderDetail orderId={result}/>
+            <OrderDetail orderId={result} isLoading={isLoading}/>
         </div>
     )
 }

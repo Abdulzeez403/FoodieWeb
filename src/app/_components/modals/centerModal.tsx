@@ -1,8 +1,9 @@
-import { Modal } from 'antd'
+import { Modal, ModalProps } from 'antd'
 import React, { useState } from 'react'
 
-interface IProps {
+interface IProps extends ModalProps {
     open?: boolean,
+    data?: any;
     onDismiss?: () => void,
     width?: string | number,
     children: React.ReactNode
@@ -10,7 +11,11 @@ interface IProps {
     center: boolean
 }
 
-const ModalComponent1 = ({ open, onDismiss, width, children, title, center }: IProps) => {
+
+
+const ModalComponent1 = ({ open, onDismiss, width, children, title, center, data }: IProps) => {
+
+
 
     return (
         <>
@@ -21,6 +26,7 @@ const ModalComponent1 = ({ open, onDismiss, width, children, title, center }: IP
                 width={width}
                 onCancel={onDismiss}
                 footer={null}
+
             >
                 {children}
             </Modal>

@@ -4,15 +4,24 @@ import { Spin } from 'antd';
 
 
 interface IProps {
-    className: any
-    size: number
+    loadingStyle?: any
+    size?: number,
+    spin?: boolean
 }
-const loadingComponent: React.FC<IProps> = ({ className, size = 20 }: IProps) => (
+const LoadingComponent: React.FC<IProps> = ({ loadingStyle, size = 50, spin }: IProps) => (
     <Spin
         indicator={
             <LoadingOutlined
-                style={className}
+                style={{ width: 20, color: "green" }}
                 size={size}
-                spin />} />);
+                spin={spin} />} />);
 
-export default loadingComponent;
+const FullPageLoading = () => {
+    <Spin
+        style={{ width: 20, color: "green" }}
+        size="large"
+        spinning
+        fullscreen />
+}
+
+export { LoadingComponent, FullPageLoading };
