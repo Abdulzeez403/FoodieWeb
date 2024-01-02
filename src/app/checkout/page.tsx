@@ -6,8 +6,7 @@ import { useEmptyCartMutation, useGetCartQuery } from '@/lib/features/cart/cartA
 import Cookies from 'universal-cookie';
 import { ICart } from '@/lib/features/cart/model';
 import { UserOutlined } from '@ant-design/icons';
-import { Form } from 'antd';
-import { Formik, FormikProps } from 'formik';
+import { Formik, FormikProps, Form } from 'formik';
 import ButtonComponent from '../_components/button';
 import { ApTextInput } from '../_components/input/TextInput';
 import { useGetUserQuery, useUpdateUserMutation } from '@/lib/features/auth/authApi';
@@ -94,8 +93,6 @@ const Page = () => {
                         <div>
                             <Form >
                                 <div className=" ">
-                                    {/* <h4 className=" font-semibold text-lg">Log In</h4> */}
-
                                 </div>
                                 <ApTextInput
                                     type="text"

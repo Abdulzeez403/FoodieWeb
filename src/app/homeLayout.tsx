@@ -100,11 +100,11 @@ const HomeLayout = () => {
 
                         <div className='hidden sm:hidden md:flex lg:flex' >
                             {user?._id ?
-                                (<ButtonComponent size="large" type="link" >
-                                    <Link href="/user">
+                                (<Link href="/user">
+                                    <ButtonComponent size="large" type="link" >
                                         <FaRegUser />
-                                    </Link>
-                                </ButtonComponent>) : (
+                                    </ButtonComponent>
+                                </Link>) : (
                                     <ButtonComponent size="large" type="default"
                                         onClick={() => { handleModal() }}>
                                         Login/Sign Up

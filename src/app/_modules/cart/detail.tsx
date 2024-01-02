@@ -8,6 +8,7 @@ import { setCart, setTotalPrice } from '@/lib/features/cart/cartSlice'
 import { RootState } from '@/lib/store'
 import { useDeleteCartMutation, useGetCartQuery, useGetCartsQuery } from '@/lib/features/cart/cartApi'
 import Cookies from 'universal-cookie'
+import ImageComponent from '@/app/_components/images'
 
 interface IProps {
     cart: any,
@@ -99,8 +100,7 @@ const Cartdetail: React.FC<IProps> = ({ cart }) => {
         <>
             <div className="flex justify-between items-center m-0" >
                 <div className="flex gap-5">
-                    {/* <ImageComponent src={Images} alt="image" width={50} height={50} className='rounded-full w-[50px] min-w-min' /> */}
-                    <AvatarComponents src={Images} />
+                    <ImageComponent src={carts?.images?.[0]?.uri} alt="image" width={50} height={50} className='rounded-full w-[50px] min-w-min' />
                     <div>
                         <h4 className="font-semibold text-lg">{carts?.name} </h4>
                         <p className="text-lg">{carts?.price * qnt} </p>

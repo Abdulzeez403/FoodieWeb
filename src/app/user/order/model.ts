@@ -1,6 +1,5 @@
 export interface ISingelOrder {
   _id: string;
-  //   orderId: string;
   description: string;
   price: string;
   images: Images[];

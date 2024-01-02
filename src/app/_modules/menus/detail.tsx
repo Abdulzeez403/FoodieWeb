@@ -32,7 +32,7 @@ const MenusList = () => {
                 {
                     menus?.map((item: any) => (
                         <div key={item?._id}>
-                            <MenuComponent img={item?.images} title={item?.name} description={item.description} price={item.price}
+                            <MenuComponent img={item?.images?.[0]?.uri} title={item?.name} description={item.description} price={item.price}
                                 _id={item?._id}
                             />
                         </div>

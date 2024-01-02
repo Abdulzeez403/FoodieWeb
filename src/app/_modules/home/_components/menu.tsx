@@ -2,9 +2,6 @@ import ImageComponent from '@/app/_components/images'
 import StarIcon from '@/app/_components/svg/svg/star'
 import React from 'react'
 import HeaderComponents from '@/app/_components/header'
-import ButtonComponent from '@/app/_components/button'
-import { useDispatch } from 'react-redux'
-import { addToCart } from '@/lib/features/cart/cartSlice'
 import { MenuComponent } from '../../menus/_components/menuCard'
 import { useGetMenusQuery } from '@/lib/features/menu/menuApi'
 
@@ -27,7 +24,7 @@ const MenusSection = () => {
                 {
                     menus?.map((item: any) => (
                         <div key={item?._id}>
-                            <MenuComponent img={item.image} title={item?.name} description={item.description} price={item.price}
+                            <MenuComponent img={item?.images?.[0]?.uri} title={item?.name} description={item.description} price={item.price}
                             />
                         </div>
 

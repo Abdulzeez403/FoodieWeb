@@ -15,9 +15,6 @@ interface IProps {
 }
 
 const UpdateUser = ({ onDismiss, user, getUser, userId }: IProps) => {
-
-    console.log(userId, "...theId")
-
     const [UpdateUser, { isLoading, isSuccess }] = useUpdateUserMutation()
     const handleSubmit = (payload: IUser) => {
         try {

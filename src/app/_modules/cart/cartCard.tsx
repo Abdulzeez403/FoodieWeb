@@ -4,6 +4,7 @@ import React from 'react'
 import { CiSquarePlus, CiSquareMinus } from 'react-icons/ci'
 import { RiDeleteBin5Fill } from "react-icons/ri";
 import Image from "next/image"
+import ImageComponent from '@/app/_components/images';
 
 interface IProps {
     carts: ICart,
@@ -20,9 +21,7 @@ const CartCard: React.FC<IProps> = ({ carts, qnt, handleDecrement, handleIncreme
         <div className='relative my-6'>
             <div className="shadow-style flex justify-between items-center m-0 border-2 rounded-md p-6" >
                 <div className="flex gap-5">
-                    <AvatarComponents src={carts?.image?.[0].uri} />
-
-                    {/* <Image src={carts?.image?.[0].uri} alt="Image" width={200} height={200} /> */}
+                    <ImageComponent src={carts?.images?.[0]?.uri} alt="image" width={50} height={50} className='rounded-full w-[50px] min-w-min' />
                     <div>
                         <h4 className="font-semibold text-lg">{carts?.name} </h4>
                         <p className="text-lg">{carts?.price as any * qnt} </p>

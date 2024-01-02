@@ -26,7 +26,7 @@ const OrderPage = () => {
                                     <Link href={`/user/order/${order?._id}`}  >
                                         <div className='flex justify-between mb-3'>
                                             <div>
-                                                <h4 className='text-md'>{order?._id}</h4>
+                                                <h4 className='text-md'>{order?.name}</h4>
                                                 <Moment>{order?.created || "N/L"}</Moment>
                                             </div>
 
@@ -34,7 +34,7 @@ const OrderPage = () => {
                                         </div>
                                         <div className='flex justify-between'>
                                             <div className='bg-red-300'>
-                                                <Image src={order?.cart?.menu?.images?.uri} width={70} height={70} alt="image" />
+                                                <Image src={order?.images?.[0]?.uri} alt="image" />
                                             </div>
                                             <div className="flex gap-x-5">
                                                 <div>
