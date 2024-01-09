@@ -20,7 +20,7 @@ const SignInComponents = ({ handleLoyStyle, onDismiss }: IProps) => {
     const handleSubmit = async (payload: IUserSignIn) => {
 
         try {
-            const res = await axios.post("http://localhost:5000/api/auth/user", payload)
+            const res = await axios.post(`${process.env.NEXT_BACKEND_URL}/auth/user`, payload)
             if (res) {
                 toast.success("Logged In")
                 onDismiss()

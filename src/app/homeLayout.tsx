@@ -87,7 +87,7 @@ const HomeLayout = () => {
                         </div>
                         <nav className="hidden sm:hidden md:flex md:gap-4 lg:flex lg:gap-4">
                             <Link href="/"> <h3 className='link-style'>Home</h3></Link>
-                            <Link href="/"> <h3 className='link-style'>Recommendation</h3></Link>
+                            <Link href="/menu"> <h3 className='link-style'>Recommendation</h3></Link>
                         </nav>
                     </div>
 

@@ -15,7 +15,7 @@ const Page = ({ params, searchParams }: { params: pageParam, searchParams: any }
     const FetchOrder = async()=>{
      setLoading(true)
         try{
-            const res = await axios.get(`http://localhost:5000/api/order/${params?.slug}`);
+            const res = await axios.get(`https://foodieserver.onrender.com/api//order/${params?.slug}`);
             const data = res.data;
             setResult(data)
             setLoading(false)

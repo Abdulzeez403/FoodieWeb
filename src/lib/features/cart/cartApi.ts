@@ -1,8 +1,10 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+const baseUrl =
+  process.env.NEXT_BACKEND_URL || "https://foodieserver.onrender.com/api/";
 
 export const cartApi = createApi({
   reducerPath: "cartApi",
-  baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:5000/api" }),
+  baseQuery: fetchBaseQuery({ baseUrl }),
   endpoints: (builder) => ({
     getCarts: builder.query({
       query: () => "/cart",

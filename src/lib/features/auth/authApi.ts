@@ -1,9 +1,12 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { IUser } from "./model";
 
+const baseUrl =
+  process.env.NEXT_BACKEND_URL || "https://foodieserver.onrender.com/api/";
+
 export const authApi = createApi({
   reducerPath: "Api",
-  baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:5000/api" }),
+  baseQuery: fetchBaseQuery({ baseUrl }),
   endpoints: (builder) => ({
     getUsers: builder.query({
       query: () => "/users",

@@ -33,8 +33,8 @@ const OrderPage = () => {
                                             <h4 className='font-semibold text-yellow-300 text-md'>{order?.status}</h4>
                                         </div>
                                         <div className='flex justify-between'>
-                                            <div className='bg-red-300'>
-                                                <Image src={order?.images?.[0]?.uri} alt="image" />
+                                            <div >
+                                                <Image src={order?.cart?.[0]?.menu?.images?.[0]?.uri} alt="image" width={50} height={50} />
                                             </div>
                                             <div className="flex gap-x-5">
                                                 <div>
