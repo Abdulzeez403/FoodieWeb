@@ -2,11 +2,8 @@
 
 import React from 'react'
 import ButtonComponent from '@/app/_components/button'
-import { useDispatch } from 'react-redux'
-import { toast } from 'react-toastify'
-import { MenuComponent } from './_components/menuCard'
-import Cookies from 'universal-cookie'
 import { useGetMenusQuery } from '@/lib/features/menu/menuApi'
+import { MenuComponent } from './_components/menuCard'
 
 
 const MenusList = () => {

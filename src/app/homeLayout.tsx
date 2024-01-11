@@ -10,16 +10,16 @@ import ModalComponent2 from "./_components/modals/sideModal"
 import CartIcon from "./_components/svg/svg/cart"
 import MenuIcon from "./_components/svg/svg/menu"
 import SearchIcon from "./_components/svg/svg/search"
-import SignInComponents from "./_modules/auth/signIn"
-import SignUpComponent from "./_modules/auth/signUp"
+import SignInComponents from "./(modules)/auth/signIn"
+import SignUpComponent from "./(modules)/auth/signUp"
 import { useGetCartQuery } from "@/lib/features/cart/cartApi"
 import Cookies from "universal-cookie"
 import { ICart } from "@/lib/features/cart/model"
 import { setCarLength, setTotalPrice } from "@/lib/features/cart/cartSlice"
 import { useDispatch } from "react-redux"
-import Cartdetail from "./_modules/cart/detail"
 import { FaRegUser, FaAngleRight } from 'react-icons/fa'
 import Image from "next/image"
+import Cartdetail from "./cart/detail"
 
 const HomeLayout = () => {
     const cookies = new Cookies()

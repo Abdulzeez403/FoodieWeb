@@ -1,14 +1,14 @@
 
 "use client"
 import { useGetUserQuery, useGetUsersQuery } from "@/lib/features/auth/authApi"
-import HomePage from "./_modules/home/detail"
+import HomePage from "./(modules)/home/detail"
 export default function Home() {
 
 
-  return (
-    <div>
-      <HomePage />
+    return (
+        <div>
+            <HomePage />
 
-    </div>
-  )
+        </div>
+    )
 }

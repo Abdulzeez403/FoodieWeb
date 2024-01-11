@@ -1,5 +1,5 @@
-import MenusList from '@/app/_modules/menus/detail'
 import React from 'react'
+import MenusList from './detail'
 
 const MenuPage = () => {
     return <MenusList />

@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useEffect } from 'react'
-import CheckoutPage from '../_modules/checkout/detail'
+import CheckoutPage from './detail'
 import { useEmptyCartMutation, useGetCartQuery } from '@/lib/features/cart/cartApi';
 import Cookies from 'universal-cookie';
 import { ICart } from '@/lib/features/cart/model';
