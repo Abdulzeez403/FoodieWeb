@@ -1,6 +1,6 @@
-import ButtonComponent from '@/app/_components/button';
-import { ApTextInput } from '@/app/_components/input/TextInput';
-import CheckBoxComponent from '@/app/_components/input/checkbox';
+import ButtonComponent from '@/app/components/button';
+import { ApTextInput } from '@/app/components/input/TextInput';
+import CheckBoxComponent from '@/app/components/input/checkbox';
 import { GoogleCircleFilled, LockOutlined, TwitterCircleFilled, UserOutlined } from '@ant-design/icons';
 import { Form, Formik, FormikProps } from 'formik'
 import { FcGoogle } from "react-icons/fc";
@@ -8,7 +8,7 @@ import React from 'react'
 import { IUserSignIn } from '@/lib/features/auth/model';
 import { toast } from 'react-toastify';
 import axios from 'axios';
-import { UseSetCookie } from '@/app/_components/hooks/cookie';
+import { UseSetCookie } from '@/app/components/hooks/cookie';
 
 interface IProps {
     handleLoyStyle: () => void;
@@ -20,7 +20,7 @@ const SignInComponents = ({ handleLoyStyle, onDismiss }: IProps) => {
     const handleSubmit = async (payload: IUserSignIn) => {
 
         try {
-            const res = await axios.post(`${process.env.NEXT_BACKEND_URL}/auth/user`, payload)
+            const res = await axios.post(`https://foodieserver.onrender.com/api/auth/user`, payload)
             if (res) {
                 toast.success("Logged In")
                 onDismiss()

@@ -1,17 +1,8 @@
 
-import { RootState } from "@reduxjs/toolkit/query"
 import { Badge } from "antd"
 import Link from "next/link"
 import { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
-import ButtonComponent from "./_components/button"
-import ModalComponent1 from "./_components/modals/centerModal"
-import ModalComponent2 from "./_components/modals/sideModal"
-import CartIcon from "./_components/svg/svg/cart"
-import MenuIcon from "./_components/svg/svg/menu"
-import SearchIcon from "./_components/svg/svg/search"
-import SignInComponents from "./(modules)/auth/signIn"
-import SignUpComponent from "./(modules)/auth/signUp"
 import { useGetCartQuery } from "@/lib/features/cart/cartApi"
 import Cookies from "universal-cookie"
 import { ICart } from "@/lib/features/cart/model"
@@ -20,6 +11,14 @@ import { useDispatch } from "react-redux"
 import { FaRegUser, FaAngleRight } from 'react-icons/fa'
 import Image from "next/image"
 import Cartdetail from "./cart/detail"
+import MenuIcon from "./components/svg/svg/menu"
+import SearchIcon from "./components/svg/svg/search"
+import ButtonComponent from "./components/button"
+import CartIcon from "./components/svg/svg/cart"
+import ModalComponent1 from "./components/modals/centerModal"
+import ModalComponent2 from "./components/modals/sideModal"
+import SignInComponents from "./(modules)/auth/signIn"
+import SignUpComponent from "./(modules)/auth/signUp"
 
 const HomeLayout = () => {
     const cookies = new Cookies()

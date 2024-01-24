@@ -1,5 +1,5 @@
-import ButtonComponent from '@/app/_components/button';
-import { ApTextInput } from '@/app/_components/input/TextInput';
+import ButtonComponent from '@/app/components/button';
+import { ApTextInput } from '@/app/components/input/TextInput';
 import { useAddNewUserMutation } from '@/lib/features/auth/authApi';
 import { IUser } from '@/lib/features/auth/model';
 import { LockOutlined, UserOutlined } from '@ant-design/icons';

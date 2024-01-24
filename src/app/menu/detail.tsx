@@ -1,7 +1,7 @@
 "use client"
 
 import React from 'react'
-import ButtonComponent from '@/app/_components/button'
+import ButtonComponent from '@/app/components/button'
 import { useGetMenusQuery } from '@/lib/features/menu/menuApi'
 import { MenuComponent } from './_components/menuCard'
 

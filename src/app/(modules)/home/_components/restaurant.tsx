@@ -1,9 +1,9 @@
-import ImageComponent from '@/app/_components/images';
+import ImageComponent from '@/app/components/images';
 import React from 'react'
 import Restaurant1 from "../../../../../public/fast.jpg"
-import LocationIcon from '@/app/_components/svg/svg/locate';
-import StarIcon from '@/app/_components/svg/svg/star';
-import HeaderComponents from '@/app/_components/header';
+import LocationIcon from '@/app/components/svg/svg/locate';
+import StarIcon from '@/app/components/svg/svg/star';
+import HeaderComponents from '@/app/components/header';
 
 const RestaurantSection = () => {
     return (

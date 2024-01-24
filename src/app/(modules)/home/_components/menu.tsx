@@ -1,7 +1,7 @@
-import ImageComponent from '@/app/_components/images'
-import StarIcon from '@/app/_components/svg/svg/star'
+import ImageComponent from '@/app/components/images'
+import StarIcon from '@/app/components/svg/svg/star'
 import React from 'react'
-import HeaderComponents from '@/app/_components/header'
+import HeaderComponents from '@/app/components/header'
 import { MenuComponent } from '../../../menu/_components/menuCard'
 import { useGetMenusQuery } from '@/lib/features/menu/menuApi'
 

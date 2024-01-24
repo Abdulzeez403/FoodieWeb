@@ -1,10 +1,11 @@
-import AvatarComponents from '@/app/_components/images/avatar'
+
 import { ICart } from '@/lib/features/cart/model';
 import React from 'react'
 import { CiSquarePlus, CiSquareMinus } from 'react-icons/ci'
 import { RiDeleteBin5Fill } from "react-icons/ri";
 import Image from "next/image"
-import ImageComponent from '@/app/_components/images';
+import ImageComponent from '../components/images';
+// import ImageComponent from '@/app/_components/images';
 
 interface IProps {
     carts: ICart,

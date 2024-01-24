@@ -7,14 +7,14 @@ import Cookies from 'universal-cookie';
 import { ICart } from '@/lib/features/cart/model';
 import { UserOutlined } from '@ant-design/icons';
 import { Formik, FormikProps, Form } from 'formik';
-import ButtonComponent from '../_components/button';
-import { ApTextInput } from '../_components/input/TextInput';
 import { useGetUserQuery, useUpdateUserMutation } from '@/lib/features/auth/authApi';
 import { toast } from 'react-toastify';
 import { IUser } from '@/lib/features/auth/model';
 import { usePlaceOrderMutation } from '@/lib/features/order/orderApi';
 import { useSelector } from 'react-redux';
 import { useStartPaymentMutation } from '@/lib/features/payment/paymentApi';
+import ButtonComponent from '../components/button';
+import { ApTextInput } from '../components/input/TextInput';
 
 
 const Page = () => {

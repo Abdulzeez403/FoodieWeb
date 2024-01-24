@@ -1,8 +1,8 @@
 "use client"
 
-import ButtonComponent from '@/app/_components/button'
-import AvatarComponents from '@/app/_components/images/avatar'
-import ModalComponent1 from '@/app/_components/modals/centerModal'
+import ButtonComponent from '@/app/components/button'
+import AvatarComponents from '@/app/components/images/avatar'
+import ModalComponent1 from '@/app/components/modals/centerModal'
 import { useGetUserQuery } from '@/lib/features/auth/authApi'
 import React, { useState } from 'react'
 import Cookies from 'universal-cookie'

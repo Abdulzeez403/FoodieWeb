@@ -1,9 +1,9 @@
-import LocationInput from '@/app/_components/input/locate'
+import LocationInput from '@/app/components/input/locate'
 import React from 'react'
 import Image from "next/image"
 import food1 from "../../../../../public/food1.png"
 import food2 from "../../../../../public/food2.png"
-import ImageComponent from '@/app/_components/images'
+import ImageComponent from '@/app/components/images'
 
 const HeroSection = () => {
     return (

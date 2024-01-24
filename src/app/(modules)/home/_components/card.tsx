@@ -1,10 +1,10 @@
-import ImageComponent from '@/app/_components/images'
+import ImageComponent from '@/app/components/images'
 import { Space } from 'antd'
 import React from 'react'
 import order from "../../../../../public/order.png";
 import search from "../../../../../public/search.png";
 import delivery from "../../../../../public/delivery.png";
-import HeaderComponents from '@/app/_components/header';
+import HeaderComponents from '@/app/components/header';
 
 
 interface IProps {

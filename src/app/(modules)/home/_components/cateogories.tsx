@@ -1,4 +1,4 @@
-import ImageComponent from '@/app/_components/images'
+import ImageComponent from '@/app/components/images'
 import React from 'react'
 
 import Bread from "../../../../../public/food2.png"
@@ -7,7 +7,7 @@ import bakery from "../../../../../public/food1.png"
 import india from "../../../../../public/india_food.jpg"
 import fast_food from "../../../../../public/fast.jpg"
 import korean from "../../../../../public/koreanss.jpg"
-import HeaderComponents from '@/app/_components/header'
+import HeaderComponents from '@/app/components/header'
 
 const CategoriesSection = () => {
 

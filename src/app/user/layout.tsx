@@ -5,7 +5,7 @@ import { FaRegUser, FaAngleRight } from 'react-icons/fa'
 import { FaHeartPulse } from 'react-icons/fa6'
 import { FiBox } from 'react-icons/fi'
 import { IoKeyOutline } from 'react-icons/io5'
-import ButtonComponent from '../_components/button'
+import ButtonComponent from '../components/button'
 interface IProps {
     children: React.ReactNode
 }

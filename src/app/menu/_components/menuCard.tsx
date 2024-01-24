@@ -1,6 +1,6 @@
-import ButtonComponent from "@/app/_components/button";
-import ImageComponent from "@/app/_components/images";
-import StarIcon from "@/app/_components/svg/svg/star";
+import ButtonComponent from "@/app/components/button";
+import ImageComponent from "@/app/components/images";
+import StarIcon from "@/app/components/svg/svg/star";
 import { useAddToCartMutation, useGetCartQuery } from "@/lib/features/cart/cartApi";
 import { setCarLength } from "@/lib/features/cart/cartSlice";
 import { RootState } from "@reduxjs/toolkit/query";

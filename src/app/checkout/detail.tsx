@@ -1,15 +1,11 @@
 
 import React, { useEffect, useState } from 'react'
-import Images from "../../../../public/koreans.jpeg"
-import AvatarComponents from '@/app/_components/images/avatar'
-import { CiSquareMinus, CiSquarePlus } from 'react-icons/ci'
 import { useDispatch, useSelector } from 'react-redux'
 import { toast } from 'react-toastify'
 import { setCarLength, setCart, setTotalPrice } from '@/lib/features/cart/cartSlice'
 import { RootState } from '@/lib/store'
-import { useDeleteCartMutation, useEmptyCartMutation, useGetCartQuery, useGetCartsQuery } from '@/lib/features/cart/cartApi'
+import { useDeleteCartMutation, useGetCartQuery } from '@/lib/features/cart/cartApi'
 import Cookies from 'universal-cookie'
-import { usePlaceOrderMutation } from '@/lib/features/order/orderApi'
 import CartCard from '../cart/cartCard'
 
 interface IProps {

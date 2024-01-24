@@ -5,7 +5,7 @@ import Cookies from 'universal-cookie';
 import Image from "next/image"
 import Moment from 'react-moment';
 import Link from 'next/link';
-import { LoadingComponent } from '@/app/_components/loading';
+import { LoadingComponent } from '@/app/components/loading';
 
 const OrderPage = () => {
     const cookies = new Cookies()

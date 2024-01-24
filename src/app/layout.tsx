@@ -5,7 +5,7 @@ import './globals.css'
 import { Provider } from 'react-redux'
 import store from '@/lib/store'
 import HomeLayout from './homeLayout'
-import Notification from "./_components/notifications/notify"
+import Notification from "./components/notifications/notify"
 
 
 
@@ -17,17 +17,17 @@ import Notification from "./_components/notifications/notify"
 
 export default function RootLayout({ children, }: { children: React.ReactNode }) {
 
-  return (
-    <html lang="en">
-      <Provider store={store}>
-        <body className='' >
-          <Notification />
-          <HomeLayout />
-          {children}
-        </body>
-      </Provider>
-    </html>
-  )
+    return (
+        <html lang="en">
+            <Provider store={store}>
+                <body className='' >
+                    <Notification />
+                    <HomeLayout />
+                    {children}
+                </body>
+            </Provider>
+        </html>
+    )
 }
 
 

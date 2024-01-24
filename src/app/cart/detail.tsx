@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import Images from "../../../../public/koreans.jpeg"
-import AvatarComponents from '@/app/_components/images/avatar'
 import { CiSquareMinus, CiSquarePlus } from 'react-icons/ci'
 import { useDispatch, useSelector } from 'react-redux'
 import { toast } from 'react-toastify'
@@ -8,7 +6,7 @@ import { setCart, setTotalPrice } from '@/lib/features/cart/cartSlice'
 import { RootState } from '@/lib/store'
 import { useDeleteCartMutation, useGetCartQuery, useGetCartsQuery } from '@/lib/features/cart/cartApi'
 import Cookies from 'universal-cookie'
-import ImageComponent from '@/app/_components/images'
+import ImageComponent from '@/app/components/images'
 
 interface IProps {
     cart: any,
