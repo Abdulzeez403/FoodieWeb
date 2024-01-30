@@ -41,7 +41,7 @@ const HomeLayout = () => {
         show: true
 
     })
-    const { data: carts, refetch: getCart } = useGetCartQuery(user?._id)
+    const { data: carts, refetch: getCart } = useGetCartQuery(user?._id || null)
 
     const subTotal = carts?.data?.map((c: any) => parseFloat(c?.menu?.price) || 0)?.reduce((a: any, b: any) => a + b, 0);
     const cartLengths = useSelector((state: any) => state.cart?.cartlength)
@@ -134,7 +134,6 @@ const HomeLayout = () => {
                 </div>
 
                 <div className={logStyle.show ? " hidden " : "block"}>
-
                     <SignUpComponent
                         onDismiss={() => setModal({ show: false })}
                         handleLoyStyle={() => setLogStyle({ show: true })} />
