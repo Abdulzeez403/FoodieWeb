@@ -97,7 +97,7 @@ const HomeLayout = () => {
 
                         </div>
 
-                        <div className='hidden sm:hidden md:flex lg:flex' >
+                        <div className='flex sm:flex md:flex lg:flex' >
                             {user?._id ?
                                 (<Link href="/user">
                                     <ButtonComponent size="large" type="link" >

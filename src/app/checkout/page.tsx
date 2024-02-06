@@ -20,7 +20,7 @@ import { ApTextInput } from '../components/input/TextInput';
 const Page = () => {
     const cookies = new Cookies()
     const user = cookies.get("user");
-    const userId = user ? user?._id : undefined;
+    const userId = user && user?._id;
     const { data: carts, refetch: getCart } = useGetCartQuery(userId);
     const [updateUser, { isSuccess }] = useUpdateUserMutation();
     const { data: currentUser, refetch: getUser } = useGetUserQuery(userId)

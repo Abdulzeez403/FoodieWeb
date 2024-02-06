@@ -20,7 +20,7 @@ export const MenuComponent = ({ _id, img, title, description, price, }: IMenuPro
 
     const cookies = new Cookies();
     const user = cookies.get("user")
-    const userId = user ? user?._id : undefined;
+    const userId = user && user?._id;
 
     const [addToCartMutation, { isSuccess }] = useAddToCartMutation()
     const { data: carts } = useGetCartQuery(_id)
