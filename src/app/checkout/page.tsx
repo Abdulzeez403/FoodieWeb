@@ -1,7 +1,6 @@
 "use client"
 
 import React, { useEffect } from 'react'
-import CheckoutPage from './detail'
 import { useEmptyCartMutation, useGetCartQuery } from '@/lib/features/cart/cartApi';
 import Cookies from 'universal-cookie';
 import { ICart } from '@/lib/features/cart/model';
@@ -15,9 +14,10 @@ import { useSelector } from 'react-redux';
 import { useStartPaymentMutation } from '@/lib/features/payment/paymentApi';
 import ButtonComponent from '../components/button';
 import { ApTextInput } from '../components/input/TextInput';
+import { CheckoutDetial } from './detail';
 
 
-const Page = () => {
+const CheckoutPage = () => {
     const cookies = new Cookies()
     const user = cookies.get("user");
     const userId = user && user?._id;
@@ -67,8 +67,6 @@ const Page = () => {
 
 
     const handleSubmit = (payload: IUser) => {
-        // const payloads = { address: currentUser?.address, initailUser:{...payload} }
-
         updateUser({ id: userId, initailUser: { address: currentUser?.address, ...payload } }).unwrap().then((data) => {
             if (isSuccess) {
                 toast.success("Shippping info updated!")
@@ -83,7 +81,7 @@ const Page = () => {
                     <h4>Empty</h4>
                 ) : (
                     carts.data.map((item: ICart) => (
-                        <CheckoutPage cart={item} key={item?._id} />
+                        <CheckoutDetial cart={item} key={item?._id} />
                     )))}
             </div>
             <div className="w-[30rem] p-4 shadown-md">
@@ -160,4 +158,4 @@ const Page = () => {
     )
 }
 
-export default Page
+export default CheckoutPage

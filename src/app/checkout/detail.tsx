@@ -12,7 +12,7 @@ interface IProps {
     cart: any
 }
 
-const CheckoutPage: React.FC<IProps> = ({ cart }) => {
+export const CheckoutDetial: React.FC<IProps> = ({ cart }) => {
     const cookies = new Cookies()
     const user = cookies.get("user");
     const carts = cart?.menu;
@@ -120,4 +120,4 @@ const CheckoutPage: React.FC<IProps> = ({ cart }) => {
     )
 }
 
-export default CheckoutPage;
+
