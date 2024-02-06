@@ -20,9 +20,10 @@ import { ApTextInput } from '../components/input/TextInput';
 const Page = () => {
     const cookies = new Cookies()
     const user = cookies.get("user");
-    const { data: carts, refetch: getCart } = useGetCartQuery(user?._id);
+    const userId = user ? user?._id : undefined;
+    const { data: carts, refetch: getCart } = useGetCartQuery(userId);
     const [updateUser, { isSuccess }] = useUpdateUserMutation();
-    const { data: currentUser, refetch: getUser } = useGetUserQuery(user?._id)
+    const { data: currentUser, refetch: getUser } = useGetUserQuery(userId)
     const [placeOrder, { isError }] = usePlaceOrderMutation()
     const [emptyCart] = useEmptyCartMutation()
     const [startPayment] = useStartPaymentMutation()
@@ -68,7 +69,7 @@ const Page = () => {
     const handleSubmit = (payload: IUser) => {
         // const payloads = { address: currentUser?.address, initailUser:{...payload} }
 
-        updateUser({ id: user?._id, initailUser: { address: currentUser?.address, ...payload } }).unwrap().then((data) => {
+        updateUser({ id: userId, initailUser: { address: currentUser?.address, ...payload } }).unwrap().then((data) => {
             if (isSuccess) {
                 toast.success("Shippping info updated!")
             }
@@ -76,11 +77,14 @@ const Page = () => {
     }
 
     return (
-        <div className="flex justify-between m-auto items-center w-[90%]">
+        <div className="flex justify-between m-auto  w-[90%]">
             <div className="w-[50rem] ">
-                {carts?.data?.map((item: ICart) => (
-                    <CheckoutPage cart={item} key={item?._id} />
-                ))}
+                {carts.data?.length === 0 ? (
+                    <h4>Empty</h4>
+                ) : (
+                    carts.data.map((item: ICart) => (
+                        <CheckoutPage cart={item} key={item?._id} />
+                    )))}
             </div>
             <div className="w-[30rem] p-4 shadown-md">
 
@@ -102,10 +106,6 @@ const Page = () => {
                                     className=" p-2 rounded-md outline-0 border hover:bg-white hover:"
                                     icon={<UserOutlined />}
                                 />
-
-
-
-
 
                                 <ButtonComponent
                                     htmlType="submit"
@@ -142,8 +142,11 @@ const Page = () => {
                             htmlType="submit"
                             type="primary"
                             size="large"
-                            className=' w-full  rounded-md '
-                            onClick={handlePlaceholder}>
+                            className=' w-full  rounded-md py-4 '
+                            onClick={() => {
+                                handlePlaceholder(),
+                                    emptyCart(userId)
+                            }}>
                             <h4>Checkout: ({subTotal})</h4>
 
                         </ButtonComponent>

@@ -19,7 +19,9 @@ interface IMenuProps {
 export const MenuComponent = ({ _id, img, title, description, price, }: IMenuProps) => {
 
     const cookies = new Cookies();
-    const { _id: userId } = cookies.get("user")
+    const user = cookies.get("user")
+    const userId = user ? user?._id : undefined;
+
     const [addToCartMutation, { isSuccess }] = useAddToCartMutation()
     const { data: carts } = useGetCartQuery(_id)
     const dispatch = useDispatch()

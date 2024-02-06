@@ -10,8 +10,6 @@ import { useGetMenusQuery } from '@/lib/features/menu/menuApi'
 
 const MenusSection = () => {
     const { data: menus } = useGetMenusQuery({})
-
-
     return (
         <div className='w-[80%] mx-auto py-4'>
             <HeaderComponents title="New Recipes" description="Some of the best restaurant in town!" />
