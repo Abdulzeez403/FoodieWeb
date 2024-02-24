@@ -41,7 +41,6 @@ export const MenuComponent = ({ _id, img, title, description, price, }: IMenuPro
         }
     }
     return (
-
         <div className=' card  w-[20rem]  shadow-lg rounded-md border-2 pb-5  '>
             <div className='relative overflow-hidden '>
                 <ImageComponent

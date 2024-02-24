@@ -44,12 +44,15 @@ const HomeLayout = () => {
     const { data: carts, refetch: getCart } = useGetCartQuery(user?._id || null)
 
     const subTotal = carts?.data?.map((c: any) => parseFloat(c?.menu?.price) || 0)?.reduce((a: any, b: any) => a + b, 0);
-    const cartLengths = useSelector((state: any) => state.cart?.cartlength)
-    const totalPrice = useSelector((state: any) => state.cart?.total)
+    const cartLengths = useSelector((state: any) => state?.cart?.cartlength)
+    const totalPrice = useSelector((state: any) => state?.cart?.total)
 
     useEffect(() => {
-        dispatch(setCarLength(carts?.data?.length)) as any
-        dispatch(setTotalPrice(subTotal))
+        if (user?._id) {
+            dispatch(setCarLength(carts?.data?.length)) as any
+            dispatch(setTotalPrice(subTotal))
+        }
+
     }, [dispatch, carts, subTotal])
 
     const handleModal = () => {
