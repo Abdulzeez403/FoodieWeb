@@ -4,11 +4,12 @@ import CheckBoxComponent from '@/app/components/input/checkbox';
 import { GoogleCircleFilled, LockOutlined, TwitterCircleFilled, UserOutlined } from '@ant-design/icons';
 import { Form, Formik, FormikProps } from 'formik'
 import { FcGoogle } from "react-icons/fc";
-import React from 'react'
+import React, { useState } from 'react'
 import { IUserSignIn } from '@/lib/features/auth/model';
 import { toast } from 'react-toastify';
 import axios from 'axios';
 import { UseSetCookie } from '@/app/components/hooks/cookie';
+import { Spin } from 'antd';
 
 interface IProps {
     handleLoyStyle: () => void;
@@ -17,12 +18,16 @@ interface IProps {
 
 const SignInComponents = ({ handleLoyStyle, onDismiss }: IProps) => {
 
-    const handleSubmit = async (payload: IUserSignIn) => {
+    const [loading, setLoading] = useState(false);
 
+    const handleSubmit = async (payload: IUserSignIn) => {
+        setLoading(true)
         try {
             const res = await axios.post(`https://foodieserver.onrender.com/api/auth/user`, payload)
             if (res) {
                 toast.success("Logged In")
+                setLoading(false)
+
                 onDismiss()
                 window.location.reload();
                 UseSetCookie("user", res.data)
@@ -109,7 +114,7 @@ const SignInComponents = ({ handleLoyStyle, onDismiss }: IProps) => {
                                 type="primary"
                                 size="large"
                                 className='bg-green-500 w-full text-white rounded-md'>
-                                Submit
+                                {loading ? <Spin /> : 'Sign In'}
                             </ButtonComponent>
 
                             <div className="text-center py-6 font-semibold">

@@ -3,6 +3,7 @@ import { ApTextInput } from '@/app/components/input/TextInput';
 import { useAddNewUserMutation } from '@/lib/features/auth/authApi';
 import { IUser } from '@/lib/features/auth/model';
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
+import { Spin } from 'antd';
 import { Form, Formik, FormikProps } from 'formik'
 import React from 'react'
 import { toast } from 'react-toastify';
@@ -96,7 +97,7 @@ const SignUpComponent = ({ handleLoyStyle, onDismiss }: IProps) => {
                                 type="primary"
                                 size="large"
                                 className='bg-green-500 w-full text-white rounded-md '>
-                                {isLoading ? "Creating" : "Create"}
+                                {isLoading ? <Spin className='text-white' /> : 'Sign Up'}
                             </ButtonComponent>
 
                             <div className="text-center py-6 font-semibold">

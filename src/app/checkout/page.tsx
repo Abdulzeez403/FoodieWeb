@@ -38,7 +38,7 @@ const CheckoutPage = () => {
 
 
     const handlePayment = () => {
-        const payloads = { full_name: currentUser?.name, email: currentUser?.email, amount: 2000 }
+        const payloads = { full_name: currentUser?.name, email: currentUser?.email, amount: totalPrice }
         startPayment({ payloads }).then((data: any) => {
             if (!isError) {
                 console.log(data)

@@ -4,6 +4,7 @@ import StarIcon from "@/app/components/svg/svg/star";
 import { useAddToCartMutation, useGetCartQuery } from "@/lib/features/cart/cartApi";
 import { setCarLength } from "@/lib/features/cart/cartSlice";
 import { RootState } from "@reduxjs/toolkit/query";
+import { Router } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import Cookies from "universal-cookie";
@@ -29,10 +30,16 @@ export const MenuComponent = ({ _id, img, title, description, price, }: IMenuPro
 
     const handleAddToCart = async () => {
         try {
-            const payload = { userId: userId, quantity: 1, _id }
-            await addToCartMutation(payload);
-            // dispatch(setCarLength(carts?.data?.length)) as any
-            toast.success("Cart added!")
+
+            if (userId) {
+                const payload = { userId: userId, quantity: 1, _id }
+                await addToCartMutation(payload);
+                // dispatch(setCarLength(carts?.data?.length)) as any
+                toast.success("Cart added!")
+            } else {
+                toast.error("Have you to signIn/Login first!")
+            }
+
 
 
         }

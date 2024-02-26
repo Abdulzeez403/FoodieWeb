@@ -8,6 +8,7 @@ import india from "../../../../../public/india_food.jpg"
 import fast_food from "../../../../../public/fast.jpg"
 import korean from "../../../../../public/koreanss.jpg"
 import HeaderComponents from '@/app/components/header'
+import Link from 'next/link'
 
 const CategoriesSection = () => {
 
@@ -23,13 +24,12 @@ const CategoriesSection = () => {
            md:w-[100rem] md:overflow-auto md:flex md:justify-center md:items-center
         lg:mx-auto lg:flex lg:justify-center lg:items-center lg:m-0 
             xl:w-[90%] xl:mx-auto xl:flex xl:justfiy-center xl:items-center xl:m-0'>
-                    <CategoryCard img={Bread} title="Bakery" />
-                    <CategoryCard img={africa} title="Africans" />
-                    <CategoryCard img={bakery} title="Bakery" />
-                    <CategoryCard img={india} title="India" />
-                    <CategoryCard img={fast_food} title="Snack" />
-                    <CategoryCard img={korean} title="Korean" />
-                    <CategoryCard img={korean} title="Korean" />
+                    <CategoryCard img={Bread} title="Bakery" link="/menu" />
+                    <CategoryCard img={africa} title="Africans" link="/menu" />
+                    <CategoryCard img={bakery} title="Bakery" link="/menu" />
+                    <CategoryCard img={india} title="India" link="/menu" />
+                    <CategoryCard img={fast_food} title="Snack" link="/menu" />
+                    <CategoryCard img={korean} title="Korean" link="/menu" />
 
                 </div>
             </div>
@@ -44,20 +44,23 @@ interface IProps {
     img: any,
     title: string
     className?: string,
+    link?: any
 }
-const CategoryCard = ({ img, title, className }: IProps) => {
+const CategoryCard = ({ img, title, className, link }: IProps) => {
     return (
-        <div className='mx-10 py-4'>
-            <ImageComponent src={img} alt="categoryImage"
-                width={300} height={300}
-                className='rounded-full border-2 border-green-300 
+        <Link href={link}>
+            <div className='mx-10 py-4'>
+                <ImageComponent src={img} alt="categoryImage"
+                    width={300} height={300}
+                    className='rounded-full border-2 border-green-300 
                 md:bg-red-300 '
-                sizes="" />
+                    sizes="" />
 
-            <div>
-                <h4 className="text-center font-semibold pt-2">{title}</h4>
+                <div>
+                    <h4 className="text-center font-semibold pt-2">{title}</h4>
+                </div>
             </div>
-        </div>
+        </Link>
     )
 }
 
