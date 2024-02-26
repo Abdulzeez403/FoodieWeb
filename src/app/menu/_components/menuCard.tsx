@@ -23,7 +23,7 @@ export const MenuComponent = ({ _id, img, title, description, price, }: IMenuPro
     const userId = user && user?._id;
 
     const [addToCartMutation, { isSuccess }] = useAddToCartMutation()
-    const { data: carts } = useGetCartQuery(_id)
+    // const { data: carts } = useGetCartQuery(_id)
     const dispatch = useDispatch()
 
 
@@ -31,7 +31,7 @@ export const MenuComponent = ({ _id, img, title, description, price, }: IMenuPro
         try {
             const payload = { userId: userId, quantity: 1, _id }
             await addToCartMutation(payload);
-            dispatch(setCarLength(carts?.data?.length)) as any
+            // dispatch(setCarLength(carts?.data?.length)) as any
             toast.success("Cart added!")
 
 

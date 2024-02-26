@@ -7,12 +7,26 @@ import { RootState } from '@/lib/store'
 import { useDeleteCartMutation, useGetCartQuery, useGetCartsQuery } from '@/lib/features/cart/cartApi'
 import Cookies from 'universal-cookie'
 import ImageComponent from '@/app/components/images'
+import axios from 'axios'
 
 interface IProps {
     cart: any,
 }
 
 const Cartdetail: React.FC<IProps> = ({ cart }) => {
+    const [cartData, setCartData] = useState<any>()
+
+    const getCartData = async (userId: any) => {
+        try {
+            const response = await axios.get(`https://foodieserver.onrender.com/api/cart/${userId}`);
+            setCartData(response?.data)
+            return response.data;
+        } catch (error) {
+            console.error('Error fetching cart data:', error);
+            throw error;
+        }
+    };
+
     const cookies = new Cookies()
     const user = cookies.get("user");
     const carts = cart?.menu;
@@ -20,14 +34,14 @@ const Cartdetail: React.FC<IProps> = ({ cart }) => {
     const { _id: cartId, quantity } = cart;
     const [qnt, setQnt] = useState(quantity)
     const [deleteCart, { isSuccess }] = useDeleteCartMutation();
-    const { refetch: getCart } = useGetCartQuery(user?._id);
+    // const { refetch: getCart } = useGetCartQuery(user?._id);
     const cartss = useSelector((state: RootState) => state.cart.carts)
     const total = useSelector((state: RootState) => state.cart.total)
 
     const handleRemoveCart = async () => {
         try {
             await deleteCart(cartId)
-            getCart()
+            getCartData(user?._id)
             toast.success("Cart Removed!!")
         } catch (error) {
             console.error('Error removing cart:', error);

@@ -19,12 +19,44 @@ import ModalComponent1 from "./components/modals/centerModal"
 import ModalComponent2 from "./components/modals/sideModal"
 import SignInComponents from "./(modules)/auth/signIn"
 import SignUpComponent from "./(modules)/auth/signUp"
+import axios from "axios"
+
+
 
 const HomeLayout = () => {
     const cookies = new Cookies()
     const user = cookies.get("user");
-
     const dispatch = useDispatch()
+    const [carts, setCarts] = useState<any>()
+
+    const getCartData = async (userId: any) => {
+
+        try {
+            const response = await axios.get(`https://foodieserver.onrender.com/api/cart/${userId}`);
+            setCarts(response?.data)
+            return response.data;
+        } catch (error) {
+            console.error('Error fetching cart data:', error);
+            throw error;
+        }
+    };
+
+
+
+    const subTotal = carts?.data?.map((c: any) => parseFloat(c?.menu?.price) || 0)?.reduce((a: any, b: any) => a + b, 0);
+    const cartLengths = useSelector((state: any) => state?.cart?.cartlength)
+    const totalPrice = useSelector((state: any) => state?.cart?.total)
+
+    useEffect(() => {
+        if (user) {
+            getCartData(user?._id);
+            dispatch(setCarLength(carts?.data?.length)) as any
+            dispatch(setTotalPrice(subTotal))
+        }
+
+    }, [])
+
+
     const [modal, setModal] = useState<{ show: boolean, data?: any, }>({
         show: false
     })
@@ -41,19 +73,8 @@ const HomeLayout = () => {
         show: true
 
     })
-    const { data: carts, refetch: getCart } = useGetCartQuery(user?._id || null)
 
-    const subTotal = carts?.data?.map((c: any) => parseFloat(c?.menu?.price) || 0)?.reduce((a: any, b: any) => a + b, 0);
-    const cartLengths = useSelector((state: any) => state?.cart?.cartlength)
-    const totalPrice = useSelector((state: any) => state?.cart?.total)
 
-    useEffect(() => {
-        if (user?._id) {
-            dispatch(setCarLength(carts?.data?.length)) as any
-            dispatch(setTotalPrice(subTotal))
-        }
-
-    }, [dispatch, carts, subTotal])
 
     const handleModal = () => {
         setModal({ show: true })
@@ -61,7 +82,6 @@ const HomeLayout = () => {
 
     const handleCartModal = () => {
         setcartModal({ show: true })
-        getCart()
     }
 
     const handleMenu = () => {
@@ -123,7 +143,6 @@ const HomeLayout = () => {
                 </div>
 
             </div>
-
             <ModalComponent1
                 title="SignIn"
                 open={modal?.show}

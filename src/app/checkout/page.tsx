@@ -77,10 +77,10 @@ const CheckoutPage = () => {
     return (
         <div className="flex justify-between m-auto  w-[90%]">
             <div className="w-[50rem] ">
-                {carts.data?.length === 0 ? (
+                {carts?.data?.length === 0 ? (
                     <h4>Empty</h4>
                 ) : (
-                    carts.data.map((item: ICart) => (
+                    carts?.data?.map((item: ICart) => (
                         <CheckoutDetial cart={item} key={item?._id} />
                     )))}
             </div>
