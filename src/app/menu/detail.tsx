@@ -4,10 +4,12 @@ import React from 'react'
 import ButtonComponent from '@/app/components/button'
 import { useGetMenusQuery } from '@/lib/features/menu/menuApi'
 import { MenuComponent } from './_components/menuCard'
+import { Spin } from 'antd';
+
 
 
 const MenusList = () => {
-    const { data: menus } = useGetMenusQuery({})
+    const { data: menus, isLoading } = useGetMenusQuery({})
     const filterText = ["Snack", "Bakery", "Chicken", "handBurger", "Rice", "Nigerian Jollof Rice", "Chicken Rick"]
 
     return (
@@ -25,18 +27,22 @@ const MenusList = () => {
                 }
             </div>
 
-            <div className=' grid grid-cols-5 gap-4 py-3 '>
-                {
-                    menus?.map((item: any) => (
-                        <div key={item?._id}>
-                            <MenuComponent img={item?.images?.[0]?.uri} title={item?.name} description={item.description} price={item.price}
-                                _id={item?._id}
-                            />
-                        </div>
+            {isLoading && (
+                <div className='flex justify-center m-0 align-center'>
+                    <Spin />
+                </div>)}
 
-                    ))
-                };
 
+            <div className=' block sm:block md:flex lg:flex  py-3 '>
+                {menus?.map((item: any) => (
+                    <div key={item?._id} className="px-3 py-2">
+                        <MenuComponent img={item?.images?.[0]?.uri} title={item?.name} description={item.description} price={item.price}
+                            _id={item?._id}
+                        />
+                    </div>
+
+                ))
+                }
             </div>
         </div>
     )

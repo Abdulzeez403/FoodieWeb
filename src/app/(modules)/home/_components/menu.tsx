@@ -14,21 +14,23 @@ const MenusSection = () => {
         <div className='w-[80%] mx-auto py-4'>
             <HeaderComponents title="New Recipes" description="Some of the best restaurant in town!" />
 
-            <div className=' 
+            <div className="w-70 overflow-auto">
+
+                <div className=' 
             w-[90rem] overflow-auto flex py-4 gap-10
             lg:overflow-x-hidden
             xl:w-[90rem] xl:mx-auto xl:overflow-x-hidden'>
+                    {
+                        menus?.map((item: any) => (
+                            <div key={item?._id}>
+                                <MenuComponent img={item?.images?.[0]?.uri} title={item?.name} description={item.description} price={item.price}
+                                />
+                            </div>
 
-                {
-                    menus?.map((item: any) => (
-                        <div key={item?._id}>
-                            <MenuComponent img={item?.images?.[0]?.uri} title={item?.name} description={item.description} price={item.price}
-                            />
-                        </div>
+                        ))
+                    }
 
-                    ))
-                }
-
+                </div>
             </div>
         </div>
     )
