@@ -1,11 +1,29 @@
 import LocationInput from '@/app/components/input/locate'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Image from "next/image"
 import food1 from "../../../../../public/food1.png"
 import food2 from "../../../../../public/food2.png"
 import ImageComponent from '@/app/components/images'
 
 const HeroSection = () => {
+
+    const [country, setCountry] = useState('');
+    const [region, setRegion] = useState('');
+
+    useEffect(() => {
+        // Fetch user's geolocation data
+        fetch(`https://ipinfo.io/json?token=1f5ce33c02b27a`)
+            .then(response => response.json())
+            .then(data => {
+                const { country, region } = data;
+                setCountry(country);
+                setRegion(region)
+            })
+            .catch(error => {
+                console.error('Error fetching geolocation data:', error);
+            });
+    }, []);
+
     return (
         <div>
             <div className='relative overflow-hidden w-[90%] mx-auto h-[400px] bg-green-400 rounded-md my-10'>
@@ -22,7 +40,9 @@ const HeroSection = () => {
                     </div>
 
                     <div>
-                        <LocationInput />
+                        <LocationInput
+                            country={country}
+                            region={region} />
                     </div>
                 </div>
 

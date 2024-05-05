@@ -68,7 +68,7 @@ export const MenuComponent = ({ _id, img, title, description, price, }: IMenuPro
 
             <div className='py-3 p-3'>
                 <div><h4 className='font-bold text-[18px]'>{title}</h4></div>
-                <div>{description.slice(0, 20)}...</div>
+                <div>{description?.slice(0, 20)}...</div>
                 <div className='flex justify-between items-center py-2'>
                     <p className='font-semibold text-[1.5rem]'>$ {price}</p>
                     <ButtonComponent type="primary" className='' icon="+" size="large" htmlType="button" onClick={handleAddToCart} >

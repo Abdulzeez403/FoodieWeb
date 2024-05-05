@@ -169,36 +169,31 @@ const HomeLayout = () => {
                 onDismiss={() => setcartModal({ show: false })}>
 
                 <div>
-                    {
-                        carts?.data?.length === 0 ? (<div className="flex justify-center m-0">
-                            <Image src="../../public/emptyCart.svg" alt="image" width={200} height={200} />
-                        </div>) : (
-                            <div>
-                                {carts?.data?.map((item: ICart) => (
-                                    <Cartdetail cart={item} key={item?._id} />
-                                ))
-                                }
-
-                                <div className="flex justify-between mt-10">
-                                    {/* <div>
-                                        <h4> <span className="text-md font-medium">Total:</span>{totalPrice}</h4>
-                                    </div> */}
-                                    <ButtonComponent
-                                        onClick={() => setcartModal({ show: false })}
-                                        size="large"
-                                        type="primary"
-                                        className="w-full">
-                                        <Link href="/checkout">
-                                            Continue:({subTotal})
-                                        </Link>
-                                    </ButtonComponent>
-
-                                </div>
+                    {carts?.data?.length === 0 ? (
+                        <div className="flex justify-center m-0 align-center h-50">
+                            <div className="">
+                                <Image src="/emptyCart.svg" alt="image" width={200} height={200} />
+                                <h3 className="text-center py-5 font-bold">No Items in Cart!</h3>
                             </div>
 
-                        )
-                    }
-
+                        </div>
+                    ) : (
+                        <div>
+                            {carts?.data?.map((item: ICart) => (
+                                <Cartdetail cart={item} key={item?._id} />
+                            ))}
+                            <div className="flex justify-between mt-10">
+                                <ButtonComponent
+                                    onClick={() => setcartModal({ show: false })}
+                                    size="large"
+                                    type="primary"
+                                    className="w-full"
+                                >
+                                    <Link href="/checkout">Continue:({subTotal})</Link>
+                                </ButtonComponent>
+                            </div>
+                        </div>
+                    )}
 
                 </div>
 
