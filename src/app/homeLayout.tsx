@@ -206,7 +206,17 @@ const HomeLayout = () => {
                 width={500}
                 position="left"
                 onDismiss={() => setMenu({ show: false })}>
-                <h4>Menaing!</h4>
+                <div className="text-center"
+                    onClick={() => setMenu({ show: false })}>
+
+                    <Link href="/">
+                        <h3
+                            className='text-center py-1 font-bold'>Home</h3>
+                    </Link>
+
+                    <Link href="/menu"> <h3
+                        className='text-center  py-1 font-bold'>Recommendation</h3></Link>
+                </div>
             </ModalComponent2>
         </>
 

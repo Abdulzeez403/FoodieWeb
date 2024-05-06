@@ -1,4 +1,5 @@
-import React from 'react'
+"use client"
+import React, { useState } from 'react'
 import NavItem from './_components/navItem'
 import { CiLocationOn } from 'react-icons/ci'
 import { FaRegUser, FaAngleRight } from 'react-icons/fa'
@@ -6,70 +7,145 @@ import { FaHeartPulse } from 'react-icons/fa6'
 import { FiBox } from 'react-icons/fi'
 import { IoKeyOutline } from 'react-icons/io5'
 import ButtonComponent from '../components/button'
+import ModalComponent2 from '../components/modals/sideModal'
+import Link from 'next/link'
+import MenuIcon from '../components/svg/svg/menu'
+
 interface IProps {
     children: React.ReactNode
 }
 const Userlayout = ({ children }: IProps) => {
+
+    const [menu, setMenu] = useState<{ show: boolean, data?: any, }>({
+        show: false
+    })
+
+
+    const handleMenu = () => {
+        setMenu({ show: true })
+    }
+
     return (
-        <div className="flex justify-center w-[95%]">
-            <div className="flex gap-4 mt-10">
-                <div className='w-[22rem]   '>
-                    <div className='border-2 p-4 rounded-md shadow-md'>
-                        <div className="text-green-500 text-lg font-semibold border-b-2 my-3">Account</div>
-                        <NavItem
-                            link="/user"
-                            leftIcon={<FaRegUser color="green" size={30} />} name="Profile"
-                            caption="This is the profile"
-                            rightIcon={<FaAngleRight />}
-                        />
+        <div className="flex justify-center w-[85%]">
+            <div className="flex gap-10 mt-5">
+                <div>
 
-                        <NavItem
-                            link="/user/address"
+                    <div className='flex md:flex lg:flex xl:flex'>
+                        <div className='border-2 p-4 rounded-md shadow-md'>
+                            <div className="text-green-500 text-lg font-semibold border-b-2 my-3">Account</div>
+                            <NavItem
+                                link="/user"
+                                leftIcon={<FaRegUser color="green" size={30} />} name="Profile"
+                                caption="This is the profile"
+                                rightIcon={<FaAngleRight />}
+                            />
 
-                            leftIcon={<CiLocationOn color="green" size={30} />} name="Address"
-                            caption="Eidt Addresss"
-                            rightIcon={<FaAngleRight />}
-                        />
+                            <NavItem
+                                link="/user/address"
 
-                        <NavItem
-                            link="/user/wishlist"
+                                leftIcon={<CiLocationOn color="green" size={30} />} name="Address"
+                                caption="Eidt Addresss"
+                                rightIcon={<FaAngleRight />}
+                            />
 
-                            leftIcon={< FaHeartPulse color="green" size={30} />} name="Wishlist"
-                            caption="View Wishlist items"
-                            rightIcon={<FaAngleRight />}
-                        />
+                            <NavItem
+                                link="/user/wishlist"
 
-                        <NavItem
-                            link="/user/order"
+                                leftIcon={< FaHeartPulse color="green" size={30} />} name="Wishlist"
+                                caption="View Wishlist items"
+                                rightIcon={<FaAngleRight />}
+                            />
 
-                            leftIcon={<FiBox color="green" size={30} />} name="Order"
-                            caption="Manage All Orders"
-                            rightIcon={<FaAngleRight />}
-                        />
+                            <NavItem
+                                link="/user/order"
 
-                        <NavItem
-                            link="user/password/"
-                            leftIcon={<IoKeyOutline color="green" size={30} />} name="Password"
-                            caption="Change Password"
-                            rightIcon={<FaAngleRight />}
-                        />
+                                leftIcon={<FiBox color="green" size={30} />} name="Order"
+                                caption="Manage All Orders"
+                                rightIcon={<FaAngleRight />}
+                            />
 
-                        <div className='flex justify-center m-0'>
-                            <ButtonComponent
-                                shape="default"
-                                size="large"
-                                className='w-[18rem] p-10'>
-                                Sign Out
-                            </ButtonComponent>
+                            <NavItem
+                                link="user/password/"
+                                leftIcon={<IoKeyOutline color="green" size={30} />} name="Password"
+                                caption="Change Password"
+                                rightIcon={<FaAngleRight />}
+                            />
+
+                            <div className='flex justify-center m-0'>
+                                <ButtonComponent
+                                    shape="default"
+                                    size="large"
+                                    className='w-[18rem] p-10'>
+                                    Sign Out
+                                </ButtonComponent>
+                            </div>
+
+
                         </div>
-
-
                     </div>
 
+                    <div className="flex
+                    sm:flex md:hidden lg:hidden xl:hidden
+                    " onClick={() => handleMenu()}>
+                        <MenuIcon color="green" stroke='green'
+                        />
+                    </div>
+
+
+
+
+                    <ModalComponent2
+                        title="Menu"
+                        show={menu.show}
+                        width={500}
+                        position="left"
+                        onDismiss={() => setMenu({ show: false })}>
+                        <div className="text-center"
+                            onClick={() => setMenu({ show: false })}>
+
+                            <NavItem
+                                link="/user"
+                                leftIcon={<FaRegUser color="green" size={30} />} name="Profile"
+                                caption="This is the profile"
+                                rightIcon={<FaAngleRight />}
+                            />
+
+                            <NavItem
+                                link="/user/address"
+
+                                leftIcon={<CiLocationOn color="green" size={30} />} name="Address"
+                                caption="Eidt Addresss"
+                                rightIcon={<FaAngleRight />}
+                            />
+
+                            <NavItem
+                                link="/user/wishlist"
+
+                                leftIcon={< FaHeartPulse color="green" size={30} />} name="Wishlist"
+                                caption="View Wishlist items"
+                                rightIcon={<FaAngleRight />}
+                            />
+
+                            <NavItem
+                                link="/user/order"
+
+                                leftIcon={<FiBox color="green" size={30} />} name="Order"
+                                caption="Manage All Orders"
+                                rightIcon={<FaAngleRight />}
+                            />
+
+                            <NavItem
+                                link="user/password/"
+                                leftIcon={<IoKeyOutline color="green" size={30} />} name="Password"
+                                caption="Change Password"
+                                rightIcon={<FaAngleRight />}
+                            />
+                        </div>
+                    </ModalComponent2>
                 </div>
+
                 <div className='flex justify-center w-[55rem]'>
                     {children}
-
                 </div>
             </div>
 

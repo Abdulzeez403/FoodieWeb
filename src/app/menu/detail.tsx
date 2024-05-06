@@ -13,18 +13,27 @@ const MenusList = () => {
     const filterText = ["Snack", "Bakery", "Chicken", "handBurger", "Rice", "Nigerian Jollof Rice", "Chicken Rick"]
 
     return (
-        <div className='w-[90%] mx-auto py-4'>
-            <div className='flex gap-10 py-4 shadow-sm'>
-                {
-                    filterText.map((item, index) => (
-                        <div key={index}>
-                            <ButtonComponent size="large" type="primary" htmlType='button'>
-                                {item}
-                            </ButtonComponent>
-                        </div>
 
-                    ))
-                }
+        <div className="w-70 overflow-auto">
+
+            <div className="w-70 overflow-auto">
+
+                <div className=' 
+            w-[90rem] overflow-auto flex py-4 gap-10
+            lg:overflow-x-hidden
+            xl:w-[90rem] xl:mx-auto xl:overflow-x-hidden'>
+
+                    {
+                        filterText.map((item, index) => (
+                            <div key={index}>
+                                <ButtonComponent size="large" type="primary" htmlType='button'>
+                                    {item}
+                                </ButtonComponent>
+                            </div>
+
+                        ))
+                    }
+                </div>
             </div>
 
             {isLoading && (
@@ -33,9 +42,10 @@ const MenusList = () => {
                 </div>)}
 
 
-            <div className=' block sm:block md:flex lg:flex  py-3 '>
+            <div className='  block sm:block md:flex lg:flex'>
                 {menus?.map((item: any) => (
-                    <div key={item?._id} className="px-3 py-2">
+                    <div key={item?._id}
+                        className=" justify-center align-center m-0 py-2">
                         <MenuComponent img={item?.images?.[0]?.uri} title={item?.name} description={item.description} price={item.price}
                             _id={item?._id}
                         />
