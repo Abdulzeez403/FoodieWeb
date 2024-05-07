@@ -5,7 +5,7 @@ import { FaAngleRight, FaRegUser } from "react-icons/fa";
 interface IProps {
     leftIcon: React.ReactNode;
     name: string;
-    caption: string;
+    caption?: string;
     rightIcon: React.ReactNode;
     link: string
 }

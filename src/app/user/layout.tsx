@@ -10,7 +10,7 @@ import ButtonComponent from '../components/button'
 import ModalComponent2 from '../components/modals/sideModal'
 import Link from 'next/link'
 import MenuIcon from '../components/svg/svg/menu'
-
+import { CiAlignRight } from "react-icons/ci";
 interface IProps {
     children: React.ReactNode
 }
@@ -26,11 +26,11 @@ const Userlayout = ({ children }: IProps) => {
     }
 
     return (
-        <div className="flex justify-center w-[85%]">
+        <div className="block w-[89%]  lg:w-[89%] lg:flex xl:w-[89%] xl:flex mx-auto">
             <div className="flex gap-10 mt-5">
                 <div>
 
-                    <div className='flex md:flex lg:flex xl:flex'>
+                    <div className='hidden md:flex lg:flex xl:flex'>
                         <div className='border-2 p-4 rounded-md shadow-md'>
                             <div className="text-green-500 text-lg font-semibold border-b-2 my-3">Account</div>
                             <NavItem
@@ -75,7 +75,7 @@ const Userlayout = ({ children }: IProps) => {
                                 <ButtonComponent
                                     shape="default"
                                     size="large"
-                                    className='w-[18rem] p-10'>
+                                    className='w-[18rem] px-10'>
                                     Sign Out
                                 </ButtonComponent>
                             </div>
@@ -84,18 +84,19 @@ const Userlayout = ({ children }: IProps) => {
                         </div>
                     </div>
 
-                    <div className="flex
+                    <div className="flex pl-5 py-4
                     sm:flex md:hidden lg:hidden xl:hidden
                     " onClick={() => handleMenu()}>
-                        <MenuIcon color="green" stroke='green'
-                        />
+
+                        <CiAlignRight color={"green"} />
+
                     </div>
 
 
 
 
                     <ModalComponent2
-                        title="Menu"
+                        // title="Menu"
                         show={menu.show}
                         width={500}
                         position="left"
@@ -106,7 +107,7 @@ const Userlayout = ({ children }: IProps) => {
                             <NavItem
                                 link="/user"
                                 leftIcon={<FaRegUser color="green" size={30} />} name="Profile"
-                                caption="This is the profile"
+                                // caption="This is the profile"
                                 rightIcon={<FaAngleRight />}
                             />
 
@@ -114,15 +115,14 @@ const Userlayout = ({ children }: IProps) => {
                                 link="/user/address"
 
                                 leftIcon={<CiLocationOn color="green" size={30} />} name="Address"
-                                caption="Eidt Addresss"
+                                // caption="Eidt Addresss"
                                 rightIcon={<FaAngleRight />}
                             />
 
                             <NavItem
                                 link="/user/wishlist"
-
                                 leftIcon={< FaHeartPulse color="green" size={30} />} name="Wishlist"
-                                caption="View Wishlist items"
+                                // caption="View Wishlist items"
                                 rightIcon={<FaAngleRight />}
                             />
 
@@ -130,21 +130,21 @@ const Userlayout = ({ children }: IProps) => {
                                 link="/user/order"
 
                                 leftIcon={<FiBox color="green" size={30} />} name="Order"
-                                caption="Manage All Orders"
+                                // caption="Manage All Orders"
                                 rightIcon={<FaAngleRight />}
                             />
 
                             <NavItem
                                 link="user/password/"
                                 leftIcon={<IoKeyOutline color="green" size={30} />} name="Password"
-                                caption="Change Password"
+                                // caption="Change Password"
                                 rightIcon={<FaAngleRight />}
                             />
                         </div>
                     </ModalComponent2>
                 </div>
 
-                <div className='flex justify-center w-[55rem]'>
+                <div className='flex justify-center w-[15rem] lg:w-[55rem] xl:w-[55rem]'>
                     {children}
                 </div>
             </div>

@@ -18,7 +18,7 @@ const OrderPage = () => {
                     <LoadingComponent />
                 </div>) :
                 (
-                    <div className="w-[54rem]  border-2 rounded-md">
+                    <div className="lg:w-[53rem] xl:w-[53rem]  border-2 rounded-md">
                         {
                             orders?.map((order: any) => (
                                 <div className=' mb-2 p-3 border-b-2' key={order?._id}>
