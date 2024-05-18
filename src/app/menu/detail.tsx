@@ -14,18 +14,19 @@ const MenusList = () => {
 
     return (
 
-        <div className="w-70 overflow-auto">
+        <div className="w-[90%] mx-auto ">
 
-            <div className="w-70 overflow-auto">
+            <div className="  overflow-auto">
 
                 <div className=' 
-            w-[90rem] overflow-auto flex py-4 gap-10
-            lg:overflow-x-hidden
-            xl:w-[90rem] xl:mx-auto xl:overflow-x-hidden'>
+            w-[90rem] overflow-auto flex py-4  px-0
+            md:overflow-x-hidden md:w-full
+            lg:overflow-x-hidden lg:w-full'
+                >
 
                     {
                         filterText.map((item, index) => (
-                            <div key={index}>
+                            <div key={index} className='mr-6'>
                                 <ButtonComponent size="large" type="primary" htmlType='button'>
                                     {item}
                                 </ButtonComponent>
@@ -33,28 +34,35 @@ const MenusList = () => {
 
                         ))
                     }
+                </div >
+            </div>
+
+            {
+                isLoading && (
+                    <div className='flex justify-center m-0 align-center'>
+                        <Spin />
+                    </div>)
+            }
+
+
+            <div className="flex justify-center align-center  
+            md:justify-start md:align-left 
+            lg:align-center lg:justify-start lg:flex ">
+
+                <div className='block sm:block md:flex lg:flex'>
+                    {menus?.map((item: any) => (
+                        <div key={item?._id}
+                            className=" justify-center align-center  py-2 mr-3 ">
+                            <MenuComponent img={item?.images?.[0]?.uri} title={item?.name} description={item.description} price={item.price}
+                                _id={item?._id}
+                            />
+                        </div>
+
+                    ))
+                    }
                 </div>
             </div>
-
-            {isLoading && (
-                <div className='flex justify-center m-0 align-center'>
-                    <Spin />
-                </div>)}
-
-
-            <div className='  block sm:block md:flex lg:flex'>
-                {menus?.map((item: any) => (
-                    <div key={item?._id}
-                        className=" justify-center align-center m-0 py-2">
-                        <MenuComponent img={item?.images?.[0]?.uri} title={item?.name} description={item.description} price={item.price}
-                            _id={item?._id}
-                        />
-                    </div>
-
-                ))
-                }
-            </div>
-        </div>
+        </div >
     )
 }
 

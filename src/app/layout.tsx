@@ -6,6 +6,9 @@ import { Provider } from 'react-redux'
 import store from '@/lib/store'
 import HomeLayout from './homeLayout'
 import Notification from "./components/notifications/notify"
+import Background from './components/loading/background'
+import { useState } from 'react'
+// import { useRouter } from 'next/router'
 
 
 
@@ -17,12 +20,25 @@ import Notification from "./components/notifications/notify"
 
 export default function RootLayout({ children, }: { children: React.ReactNode }) {
 
+    // const router = useRouter();
+    const [isLoading, setIsLoading] = useState(false);
+
+    const handleNavigation = async (event: any, path: any) => {
+        event.preventDefault();
+        setIsLoading(true);
+        setTimeout(() => {
+            setIsLoading(false);
+            // router.push(path);
+        }, 2000); // Simulate a delay for the loading state
+    };
+
     return (
         <html lang="en">
             <Provider store={store}>
                 <body className='' >
                     <Notification />
-                    <HomeLayout />
+                    <HomeLayout handlebgloadingFunc={handleNavigation as any} />
+                    {/* <Background isLoading={isLoading} /> */}
                     {children}
                 </body>
             </Provider>

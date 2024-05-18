@@ -22,8 +22,13 @@ import SignUpComponent from "./(modules)/auth/signUp"
 import axios from "axios"
 
 
+interface IProps {
+    handlebgloadingFunc: () => void;
+}
 
-const HomeLayout = () => {
+
+
+const HomeLayout = ({ handlebgloadingFunc }: IProps) => {
     const cookies = new Cookies()
     const user = cookies.get("user");
     const dispatch = useDispatch()
@@ -108,7 +113,11 @@ const HomeLayout = () => {
 
                         </div>
                         <nav className="hidden sm:hidden md:flex md:gap-4 lg:flex lg:gap-4">
-                            <Link href="/"> <h3 className='link-style'>Home</h3></Link>
+                            <Link href="/" >
+                                <h3 className='link-style'>Home</h3></Link>
+
+
+
                             <Link href="/menu"> <h3 className='link-style'>Recommendation</h3></Link>
                         </nav>
                     </div>
