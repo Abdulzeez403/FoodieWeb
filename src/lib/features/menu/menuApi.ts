@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import Cookies from "universal-cookie";
 
 const baseUrl =
-  process.env.NEXT_BACKEND_URL || "https://foodieserver.onrender.com/api/";
+  process.env.NEXT_PUBLIC_BASE_URL || "https://foodieserver.onrender.com/api/";
 
 export const menuApi = createApi({
   reducerPath: "menuApi",
@@ -22,7 +22,11 @@ export const menuApi = createApi({
     getMenus: builder.query({
       query: () => "/menuItems",
     }),
+
+    getMenu: builder.query({
+      query: (menuId) => `/menuItems/${menuId}`,
+    }),
   }),
 });
 
-export const { useGetMenusQuery } = menuApi;
+export const { useGetMenuQuery, useGetMenusQuery } = menuApi;
